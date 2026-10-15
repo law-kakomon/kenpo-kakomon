@@ -165,6 +165,8 @@ def hanrei(t):
         last_era = era
         if re.fullmatch(r'最[一二三]小[判決]', court):
             court = _SHONO[court[-1]]
+        if y == '1':
+            y = '元'          # 判例は「平成元年」と引くのが通例。検索でも揃える
         h = f'{court}{era}{y}年{int(mo)}月{int(d)}日'
         if h not in out:
             out.append(h)

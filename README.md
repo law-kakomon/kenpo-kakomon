@@ -34,6 +34,13 @@ python3 tools/digest.py <id>     # 新しい回の条文・判例・論点を取
 python3 tools/build_data.py      # data/kakomon.json と index.html への埋め込みを作り直す
 ```
 
-## 姉妹アプリ
+## 姉妹サイト
 
-科目の入口は https://law-kakomon.github.io/ 。民法・民訴・会社法・行政法・刑法・刑訴の過去問帳がある。
+科目の入口は **https://law-kakomon.github.io/** 。
+
+- [民法過去問帳](https://law-kakomon.github.io/minpo-kakomon/)
+- [民事訴訟法過去問帳](https://law-kakomon.github.io/minso-kakomon/)
+- [会社法過去問帳](https://law-kakomon.github.io/kaisha-kakomon/)
+- [行政法過去問帳](https://law-kakomon.github.io/gyosei-kakomon/)
+- [刑法過去問帳](https://law-kakomon.github.io/keiho-kakomon/)
+- [刑事訴訟法過去問帳](https://law-kakomon.github.io/keiso-kakomon/)
