@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>憲法過去問帳</title>
+<meta name="description" content="同志社・立命館・関学・慶應・中央の法科大学院 既修者入試（憲法）の過去問を、憲法の単元ごとに引ける学習帳。問題と公式の解説をそのまま開けます。">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="favicon.ico?v=2" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="icon-32.png?v=2">
+<link rel="icon" type="image/png" sizes="16x16" href="icon-16.png?v=2">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=2">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1d2026">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="憲法">
+<meta property="og:type" content="website">
+<meta property="og:title" content="憲法過去問帳">
+<meta property="og:description" content="ロー入試（既修者）の憲法の過去問を、単元ごとに引く。同志社・立命館・関学・慶應・中央の73回を収録。問題と解説は各大学の公式ページをそのまま開きます。">
+<meta property="og:url" content="https://law-kakomon.github.io/kenpo-kakomon/">
+<meta property="og:image" content="https://law-kakomon.github.io/kenpo-kakomon/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+:root{
+  --bg:#f7f6f3; --panel:#ffffff; --fg:#1f2328; --muted:#6b7280; --border:#e2e0da;
+  --accent:#4a5fa5; --accent-weak:#eef1f9; --mark:#fde68a;
+  --old:#8a6d3b; --old-bg:#fdf3df;
+  --shadow:0 8px 24px rgba(0,0,0,.12);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#15171b; --panel:#1d2026; --fg:#e6e4df; --muted:#9aa0a8; --border:#33373f;
+    --accent:#8ea2d8; --accent-weak:#262c3a; --mark:#7a5d00;
+    --old:#d9bd84; --old-bg:#3a3118;
+    --shadow:0 8px 24px rgba(0,0,0,.5);
+  }
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; background:var(--bg); color:var(--fg);
+  font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Hiragino Sans",sans-serif;
+  display:flex; flex-direction:column; overflow:hidden; font-size:14px;
+}
+button,input,select{font-family:inherit; color:inherit; font-size:inherit}
+
+/* ---------- header ---------- */
+header{
+  flex:0 0 auto; display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+  padding:8px 14px; border-bottom:1px solid var(--border); background:var(--panel);
+}
+#brand{font-weight:700; font-size:15px; letter-spacing:.05em; white-space:nowrap}
+#brand small{font-weight:400; color:var(--muted); margin-left:7px; font-size:11px; letter-spacing:0}
+.chips{display:flex; gap:4px; flex-wrap:wrap}
+.chips button{
+  border:1px solid var(--border); background:transparent; border-radius:7px;
+  padding:4px 11px; cursor:pointer; line-height:1.5;
+}
+.chips button:hover{background:var(--accent-weak)}
+.chips button.on{background:var(--accent); border-color:var(--accent); color:#fff; font-weight:600}
+#q{
+  border:1px solid var(--border); background:var(--bg); border-radius:7px;
+  padding:5px 10px; width:220px; min-width:120px;
+}
+#q:focus{outline:2px solid var(--accent-weak); border-color:var(--accent)}
+.spacer{flex:1}
+#count{color:var(--muted); font-size:12px; white-space:nowrap}
+#aboutBtn{border:1px solid var(--border); background:transparent; border-radius:7px;
+          padding:4px 11px; cursor:pointer; color:var(--muted); white-space:nowrap}
+#aboutBtn:hover{background:var(--accent-weak); color:var(--fg)}
+
+/* ---------- layout ---------- */
+main{flex:1 1 auto; display:flex; min-height:0}
+#units{
+  flex:0 0 232px; overflow-y:auto; border-right:1px solid var(--border);
+  background:var(--panel); padding:10px 0 40px;
+}
+#list{
+  flex:0 0 330px; overflow-y:auto; border-right:1px solid var(--border);
+  padding:8px 10px 40px;
+}
+#detail{flex:1 1 auto; overflow-y:auto; background:var(--panel); padding:16px 20px 40px; min-width:0}
+
+/* ---------- 単元ツリー ---------- */
+.grp{margin:0 0 4px}
+.grp>h3{
+  margin:10px 12px 4px; font-size:11px; font-weight:700; color:var(--muted);
+  letter-spacing:.08em;
+}
+.unit{
+  display:flex; align-items:baseline; gap:6px; width:100%; text-align:left;
+  border:0; background:transparent; padding:5px 12px 5px 16px; cursor:pointer;
+  border-radius:0; line-height:1.4;
+}
+.unit:hover{background:var(--accent-weak)}
+.unit.on{background:var(--accent); color:#fff; font-weight:600}
+.unit .n{margin-left:auto; font-size:11px; color:var(--muted); font-variant-numeric:tabular-nums}
+.unit.on .n{color:#fff; opacity:.85}
+.unit.zero{opacity:.4}
+.unit.top{font-weight:600; padding-left:12px}
+
+/* ---------- 一覧 ---------- */
+.card{
+  border:1px solid var(--border); background:var(--panel); border-radius:9px;
+  padding:9px 11px; margin-bottom:7px; cursor:pointer;
+}
+.card:hover{border-color:var(--accent)}
+.card.on{border-color:var(--accent); box-shadow:0 0 0 1px var(--accent) inset}
+.card .ttl{font-weight:600; display:flex; align-items:center; gap:6px; flex-wrap:wrap}
+.card .tp{color:var(--muted); font-size:12px; margin-top:3px; line-height:1.5}
+.badge{
+  font-size:10px; font-weight:600; border-radius:4px; padding:1px 5px;
+  border:1px solid var(--border); color:var(--muted); letter-spacing:.02em;
+}
+.badge.old{background:var(--old-bg); color:var(--old); border-color:transparent}
+.badge.done{background:var(--accent-weak); color:var(--accent); border-color:transparent}
+.badge.uncls{background:transparent}
+.empty{color:var(--muted); padding:20px 4px; line-height:1.8}
+.about{max-width:48em; line-height:1.85}
+.about p{margin:0 0 10px}
+.about code{background:var(--accent-weak); border-radius:4px; padding:1px 5px; font-size:12.5px}
+
+/* ---------- 詳細 ---------- */
+#detail h2{margin:0 0 2px; font-size:20px; display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+#detail .meta{color:var(--muted); font-size:12.5px; margin-bottom:14px}
+.row{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px; align-items:center}
+.btn{
+  border:1px solid var(--border); background:var(--bg); border-radius:8px;
+  padding:7px 14px; cursor:pointer; text-decoration:none; color:inherit;
+  display:inline-flex; align-items:center; gap:5px; line-height:1.4;
+}
+.btn:hover{background:var(--accent-weak); border-color:var(--accent)}
+.btn.primary{background:var(--accent); border-color:var(--accent); color:#fff; font-weight:600}
+.btn.primary:hover{opacity:.9}
+.btn[aria-disabled="true"]{opacity:.4; pointer-events:none}
+section.blk{margin:0 0 16px}
+section.blk h4{
+  margin:0 0 6px; font-size:11.5px; font-weight:700; color:var(--muted); letter-spacing:.08em;
+}
+ul.topics{margin:0; padding-left:1.2em; line-height:1.9}
+.tagrow{display:flex; gap:5px; flex-wrap:wrap}
+.tag{
+  border:1px solid var(--border); border-radius:999px; padding:2px 10px; font-size:12px;
+  background:transparent; cursor:pointer; line-height:1.6;
+}
+.tag:hover{background:var(--accent-weak); border-color:var(--accent)}
+.tag.plain{cursor:default}
+.tag.plain:hover{background:transparent; border-color:var(--border)}
+.note{
+  color:var(--muted); font-size:12.5px; line-height:1.7;
+  border-left:3px solid var(--border); padding:2px 0 2px 10px; margin:10px 0;
+}
+#viewer{
+  width:100%; height:min(78vh,900px); border:1px solid var(--border); border-radius:9px;
+  background:var(--bg);
+}
+#tabsPdf{display:flex; gap:4px; flex-wrap:wrap; margin-bottom:8px}
+label.done{
+  display:inline-flex; align-items:center; gap:6px; cursor:pointer; color:var(--muted);
+  margin-left:auto; white-space:nowrap;
+}
+.backbtn{display:none}
+
+/* ---------- 狭い画面 ---------- */
+@media (max-width:980px){
+  #units{flex:0 0 190px}
+  #list{flex:0 0 250px}
+}
+@media (max-width:760px){
+  main{position:relative}
+  #units{position:absolute; inset:0 auto 0 0; width:78%; max-width:300px; z-index:3;
+         box-shadow:var(--shadow); transform:translateX(-102%); transition:transform .18s}
+  body.nav #units{transform:none}
+  #list{flex:1 1 auto; border-right:0}
+  #detail{position:absolute; inset:0; z-index:2; transform:translateX(102%); transition:transform .18s}
+  body.open #detail{transform:none}
+  .backbtn{display:inline-flex}
+  #navbtn{display:inline-flex !important}
+  #viewer{height:70vh}
+}
+#navbtn{display:none; border:1px solid var(--border); background:transparent;
+        border-radius:7px; padding:4px 10px; cursor:pointer}
+#scrim{display:none; position:absolute; inset:0; background:rgba(0,0,0,.3); z-index:2}
+body.nav #scrim{display:block}
+</style>
+</head>
+<body>
+
+<header>
+  <button id="navbtn" aria-label="単元を開く">単元</button>
+  <div id="brand">憲法過去問帳<small>ロー入試 既修者・憲法／単元別</small></div>
+  <div class="chips" id="univChips"></div>
+  <input id="q" type="search" placeholder="論点・条文番号・判例で検索" autocomplete="off">
+  <div class="spacer"></div>
+  <button id="aboutBtn">このサイトについて</button>
+  <div id="count"></div>
+</header>
+
+<main>
+  <nav id="units"></nav>
+  <div id="list"></div>
+  <article id="detail"></article>
+  <div id="scrim"></div>
+</main>
+
+<script id="kakomon-data" type="application/json">{"generated":true,"sources":{"同志社":"https://law-school.doshisha.ac.jp/entrance_ex/question/","立命館":"https://www.ritsumei.ac.jp/lawschool/admission/past.html/","慶應":"https://www.ls.keio.ac.jp/nyushi/examination.html","関学":"https://www.kwansei.ac.jp/lawschool/admissions/kakomon/","中央":"https://www.chuo-u.ac.jp/academics/pro_graduateschool/law/orientation/selection/past/"},"taxonomy":[{"name":"総論","count":9,"subs":[{"name":"憲法の意義・最高法規性","key":"総論/憲法の意義・最高法規性","count":5},{"name":"国民主権・象徴天皇制","key":"総論/国民主権・象徴天皇制","count":3},{"name":"平和主義","key":"総論/平和主義","count":1}]},{"name":"人権総論","count":4,"subs":[{"name":"人権の享有主体","key":"人権総論/人権の享有主体","count":3},{"name":"私人間効力","key":"人権総論/私人間効力","count":0},{"name":"公共の福祉・審査基準","key":"人権総論/公共の福祉・審査基準","count":1}]},{"name":"包括的基本権・平等","count":13,"subs":[{"name":"幸福追求権・プライバシー","key":"包括的基本権・平等/幸福追求権・プライバシー","count":7},{"name":"法の下の平等","key":"包括的基本権・平等/法の下の平等","count":6}]},{"name":"精神的自由","count":46,"subs":[{"name":"思想・良心の自由","key":"精神的自由/思想・良心の自由","count":7},{"name":"信教の自由・政教分離","key":"精神的自由/信教の自由・政教分離","count":5},{"name":"表現の自由","key":"精神的自由/表現の自由","count":25},{"name":"集会・結社の自由","key":"精神的自由/集会・結社の自由","count":8},{"name":"学問の自由・大学の自治","key":"精神的自由/学問の自由・大学の自治","count":1}]},{"name":"経済的自由・人身の自由","count":11,"subs":[{"name":"職業選択の自由","key":"経済的自由・人身の自由/職業選択の自由","count":5},{"name":"財産権","key":"経済的自由・人身の自由/財産権","count":4},{"name":"居住移転・国籍離脱","key":"経済的自由・人身の自由/居住移転・国籍離脱","count":1},{"name":"適正手続・刑事手続上の権利","key":"経済的自由・人身の自由/適正手続・刑事手続上の権利","count":1}]},{"name":"社会権・参政権","count":9,"subs":[{"name":"生存権","key":"社会権・参政権/生存権","count":1},{"name":"教育を受ける権利","key":"社会権・参政権/教育を受ける権利","count":0},{"name":"労働基本権","key":"社会権・参政権/労働基本権","count":0},{"name":"参政権・選挙制度","key":"社会権・参政権/参政権・選挙制度","count":8},{"name":"国務請求権・裁判を受ける権利","key":"社会権・参政権/国務請求権・裁判を受ける権利","count":0}]},{"name":"統治","count":49,"subs":[{"name":"国会","key":"統治/国会","count":14},{"name":"内閣・行政","key":"統治/内閣・行政","count":7},{"name":"裁判所・司法権","key":"統治/裁判所・司法権","count":12},{"name":"違憲審査制","key":"統治/違憲審査制","count":9},{"name":"財政","key":"統治/財政","count":3},{"name":"地方自治","key":"統治/地方自治","count":4}]}],"items":[{"id":"dos-2027-zenki","univ":"同志社","year":2027,"term":"前期","course":"法学既修者","mondai":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/questions/2027_zenki_mondai_kenpo.pdf","kaisetsu":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/kaisetsu/2027_zenki_kaisetsu_kenpo.pdf","kaitou":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/kaitou/2027_zenki_kaitou_kenpo.pdf","kaisetsuLabel":"解説","embed":{"mondai":true,"kaisetsu":true,"kaitou":true},"embedWhy":{"mondai":null,"kaisetsu":null,"kaitou":null},"basis":"解説","units":["社会権・参政権/参政権・選挙制度","統治/違憲審査制","精神的自由/表現の自由","精神的自由/思想・良心の自由"],"topics":["投票価値の平等","議員定数配分規定の違憲と選挙の効力","事情判決的解釈","未決拘禁者の新聞紙・図書の閲読の自由","情報を摂取する自由（19条・21条の派生原理）","よど号新聞記事抹消事件の比較衡量枠組み"],"articles":[13,14,19,21],"hanrei":["最大判昭和51年4月14日","最大判昭和58年6月22日"],"classified":true},{"id":"dos-2026-zenki","univ":"同志社","year":2026,"term":"前期","course":"法学既修者","mondai":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/questions/2026_zenki_mondai_kenpo.pdf","kaisetsu":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/kaisetsu/2026_zenki_kaisetsu_kenpo.pdf","kaitou":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/kaitou/2026_zenki_kaitou_kenpo.pdf","kaisetsuLabel":"解説","embed":{"mondai":true,"kaisetsu":true,"kaitou":true},"embedWhy":{"mondai":null,"kaisetsu":null,"kaitou":null},"basis":"解説","units":["統治/裁判所・司法権","精神的自由/思想・良心の自由","人権総論/人権の享有主体"],"topics":["客観訴訟と司法権の関係","民衆訴訟・機関訴訟","強制加入団体の目的の範囲","構成員の思想・良心の自由と協力義務の限界","弁護士会による意見表明の可否"],"articles":[76],"hanrei":["最判昭和56年4月7日","最判平成8年3月19日","最判平成14年4月25日","高判平成29年9月27日","最決平成30年3月8日"],"classified":true},{"id":"dos-2026-koki","univ":"同志社","year":2026,"term":"後期","course":"法学既修者","mondai":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/questions/2026koki_mondai_kenpou.pdf","kaisetsu":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/kaisetsu/2026koki_kaisetsu_kenpou.pdf","kaitou":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/kaitou/2026koki_kaitou_kenpou.pdf","kaisetsuLabel":"解説","embed":{"mondai":true,"kaisetsu":true,"kaitou":true},"embedWhy":{"mondai":null,"kaisetsu":null,"kaitou":null},"basis":"解説","units":["総論/憲法の意義・最高法規性","総論/国民主権・象徴天皇制","精神的自由/信教の自由・政教分離"],"topics":["八月革命説","日本国憲法の制定と明治憲法の改正手続","政教分離規定と政教分離原則の区別","目的効果基準（愛媛玉串事件）","総合的判断（空知太神社事件・孔子廟事件）"],"articles":[20,89],"hanrei":["最大判平成9年4月2日","最大判平成22年1月20日","最大判令和3年2月24日"],"classified":true},{"id":"kgu-2026-a","univ":"関学","year":2026,"term":"A日程","course":"一般入試（法学既修者）","mondai":"https://www.kwansei.ac.jp/lawschool/assets/2026A_kenpo.pdf","kaisetsu":null,"kaitou":null,"kaisetsuLabel":"解説","combined":true,"mondaiNote":"問題と解説（解答例・出題の意図・講評）が1つにまとまったもの","embed":{"mondai":false,"kaisetsu":false,"kaitou":false},"embedWhy":{"mondai":"xfo","kaisetsu":null,"kaitou":null},"basis":"解説","units":["統治/内閣・行政","精神的自由/表現の自由"],"topics":["内閣総理大臣の行政各部に対する指揮監督権（72条）","ロッキード事件丸紅ルート判決","屋外広告物条例による掲出規制","法令審査と適用審査の切り分け（本問は適用違憲に絞る）"],"articles":[21,66,68,72],"hanrei":["最大判昭和43年12月18日","最判昭和62年3月3日"],"classified":true},{"id":"kgu-2026-b","univ":"関学","year":2026,"term":"B日程","course":"一般入試（法学既修者）","mondai":"https://www.kwansei.ac.jp/lawschool/assets/2026B_kenpo.pdf","kaisetsu":null,"kaitou":null,"kaisetsuLabel":"解説","combined":true,"mondaiNote":"問題と解説（解答例・出題の意図・講評）が1つにまとまったもの","embed":{"mondai":false,"kaisetsu":false,"kaitou":false},"embedWhy":{"mondai":"xfo","kaisetsu":null,"kaitou":null},"basis":"解説","units":["総論/国民主権・象徴天皇制","精神的自由/集会・結社の自由"],"topics":["「内閣の助言と承認」（3条・7条）","天皇の国事行為と内閣の責任","集会の自由（21条1項）と公の施設の使用不許可","泉佐野市民会館事件・上尾市福祉会館事件","検討すべき権利・自由の確定（集会の自由か表現の自由か）"],"articles":[3,6,7,21,67],"hanrei":["最判平成7年3月7日","最判平成8年3月15日","最判令和5年2月21日"],"classified":true},{"id":"kgu-2026-c","univ":"関学","year":2026,"term":"C日程","course":"一般入試（法学既修者）","mondai":"https://www.kwansei.ac.jp/lawschool/assets/2026C_kenpo.pdf","kaisetsu":null,"kaitou":null,"kaisetsuLabel":"解説","combined":true,"mondaiNote":"問題と解説（解答例・出題の意図・講評）が1つにまとまったもの","embed":{"mondai":false,"kaisetsu":false,"kaitou":false},"embedWhy":{"mondai":"xfo","kaisetsu":null,"kaitou":null},"basis":"解説","units":["統治/財政","精神的自由/信教の自由・政教分離"],"topics":["租税法律主義（84条）","警察による教会の行事警備と政教分離","「宗教的活動」（20条3項）該当性","特権付与の禁止（20条1項後段）","目的効果基準"],"articles":[20,84,89],"hanrei":["最大判昭和52年7月13日","最大判令和3年2月24日"],"classified":true},{"id":"kei-2026-honshi","univ":"慶應","year":2026,"term":"本試験","course":"法学既修者コース","mondai":"https://www.keio.ac.jp/files/75df5aef1e20f48cc7fbf818b4f529c7029236c6bd318378771a764cd29fb0b2","kaisetsu":"https://www.keio.ac.jp/files/5d2bc1b97adaa723e9762dac8da067c5170963dfb6e9f0bcc0d37f64cc7dd669","kaitou":null,"kaisetsuLabel":"出題趣旨","kaisetsuNote":"全科目まとめの出題趣旨。憲法の節を参照","mondaiNote":"合冊の試験問題（憲法・民法・刑法）。憲法の問題を参照","embed":{"mondai":false,"kaisetsu":false,"kaitou":false},"embedWhy":{"mondai":"xfo","kaisetsu":"xfo","kaitou":null},"basis":"解説","units":["精神的自由/表現の自由","包括的基本権・平等/幸福追求権・プライバシー"],"topics":["表現の自由と人格権の衝突","人格権侵害を理由とする出版の差止め","北方ジャーナル事件との異同","事前抑制の原則的禁止と厳格な要件","「公共的事項に関する表現」かどうかによる差"],"articles":[13,21],"hanrei":["最決令和6年12月4日","最大判昭和61年6月11日"],"classified":true},{"id":"chu-2026-ronjutsu","univ":"中央","year":2026,"term":"論述式","course":"法学既修者コース","mondai":"https://www.chuo-u.ac.jp/uploads/2026/03/academics_pro_graduateschool_law_orientation_selection_past_2026_01.pdf","kaisetsu":"https://www.chuo-u.ac.jp/uploads/2026/03/academics_pro_graduateschool_law_orientation_selection_past_2026_07.pdf","kaitou":null,"kaisetsuLabel":"出題の意図","kaisetsuNote":"全科目まとめの「出題の意図及び評価の視点」。憲法の節を参照","embed":{"mondai":false,"kaisetsu":false,"kaitou":false},"embedWhy":{"mondai":"xfo","kaisetsu":"xfo","kaitou":null},"basis":"解説","units":["包括的基本権・平等/幸福追求権・プライバシー","精神的自由/表現の自由"],"topics":["髪型の自由が13条で保障されるか","校則による髪型規制をめぐる裁判例","身体への侵襲を受けない自由","受刑者の調髪の強制と宗教上の理由による免除","よど号新聞記事抹消事件の比較衡量"],"articles":[13,21],"hanrei":["地判昭和60年11月13日","地判令和3年2月16日","最判平成8年7月18日","最大決令和5年10月25日","最大判令和6年7月3日","最判平成2年6月5日","最大判昭和45年9月16日","最大判昭和58年6月22日"],"classified":true},{"id":"dos-2025-zenki","univ":"同志社","year":2025,"term":"前期","course":"法学既修者","mondai":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/questions/2025zenki_mondai_kenpou.pdf","kaisetsu":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/kaisetsu/2025zenki_kaisetsu_kenpou.pdf","kaitou":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/kaitou/2025zenki_kaitou_kenpou.pdf","kaisetsuLabel":"解説","embed":{"mondai":true,"kaisetsu":true,"kaitou":true},"embedWhy":{"mondai":null,"kaisetsu":null,"kaitou":null},"basis":"解説","units":["統治/地方自治","包括的基本権・平等/法の下の平等"],"topics":["条例制定権と「法律の範囲内」（94条）","横出し条例","徳島市公安条例事件の判断基準","尊属殺重罰規定の違憲（14条1項）","立法目的と手段の均衡"],"articles":[14,94],"hanrei":["最大判昭和50年9月10日","最大判昭和48年4月4日","最判平成25年3月21日"],"classified":true},{"id":"dos-2025-koki","univ":"同志社","year":2025,"term":"後期","course":"法学既修者","mondai":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/questions/2025koki_mondai_kenpou.pdf","kaisetsu":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/kaisetsu/2025koki_kaisetsu_kenpou.pdf","kaitou":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/kaitou/2025koki_kaitou_kenpou.pdf","kaisetsuLabel":"解説","embed":{"mondai":true,"kaisetsu":true,"kaitou":true},"embedWhy":{"mondai":null,"kaisetsu":null,"kaitou":null},"basis":"解説","units":["統治/違憲審査制","精神的自由/集会・結社の自由"],"topics":["憲法判断回避の準則（ブランダイス・ルール）","付随的違憲審査制","恵庭事件","パブリックフォーラム論（伝統的・指定的・非パブリックフォーラム）","集会の自由と公の施設の利用","泉佐野市民会館事件との異同"],"articles":[21],"hanrei":["地判昭和42年3月29日","地判昭和48年9月7日","最判令和5年2月21日"],"classified":true},{"id":"kgu-2025-a","univ":"関学","year":2025,"term":"A日程","course":"一般入試（法学既修者）","mondai":"https://www.kwansei.ac.jp/lawschool/assets/Constitution_Solutions_2025A.pdf","kaisetsu":null,"kaitou":null,"kaisetsuLabel":"解説","combined":true,"mondaiNote":"問題と解説（解答例・出題の意図・講評）が1つにまとまったもの","embed":{"mondai":false,"kaisetsu":false,"kaitou":false},"embedWhy":{"mondai":"xfo","kaisetsu":null,"kaitou":null},"basis":"解説","units":["統治/地方自治","精神的自由/思想・良心の自由"],"topics":["地方公共団体の条例制定権（94条）","徳島市公安条例事件","君が代起立斉唱の職務命令と思想・良心の自由（19条）","間接的制約と必要性・合理性の審査"],"articles":[19,92,94],"hanrei":["最判平成23年5月30日","最大判昭和50年9月10日"],"classified":true},{"id":"kgu-2025-b","univ":"関学","year":2025,"term":"B日程","course":"一般入試（法学既修者）","mondai":"https://www.kwansei.ac.jp/lawschool/assets/Constitution_Solutions_2025B.pdf","kaisetsu":null,"kaitou":null,"kaisetsuLabel":"解説","combined":true,"mondaiNote":"問題と解説（解答例・出題の意図・講評）が1つにまとまったもの","embed":{"mondai":false,"kaisetsu":false,"kaitou":false},"embedWhy":{"mondai":"xfo","kaisetsu":null,"kaitou":null},"basis":"解説","units":["統治/国会","精神的自由/表現の自由"],"topics":["議院規則制定権（58条2項）","議院自律権と法律との関係","法廷でのメモ採取の自由（レペタ事件）","情報を摂取する自由（21条1項の派生原理）","裁判の公開（82条）"],"articles":[21,58,59],"hanrei":["最大判平成元年3月8日","最大決昭和44年11月26日"],"classified":true},{"id":"kgu-2025-c","univ":"関学","year":2025,"term":"C日程","course":"一般入試（法学既修者）","mondai":"https://www.kwansei.ac.jp/lawschool/assets/Constitution_Solutions_2025C.pdf","kaisetsu":null,"kaitou":null,"kaisetsuLabel":"解説","combined":true,"mondaiNote":"問題と解説（解答例・出題の意図・講評）が1つにまとまったもの","embed":{"mondai":false,"kaisetsu":false,"kaitou":false},"embedWhy":{"mondai":"xfo","kaisetsu":null,"kaitou":null},"basis":"解説","units":["統治/内閣・行政","精神的自由/表現の自由"],"topics":["「行政権」（65条）の意味（控除説・法律執行説）","内閣の職務（73条）","報道機関の取材資料に対する捜査機関の差押えの合憲性","取材の自由と公正な裁判の実現","博多駅テレビフィルム提出命令事件"],"articles":[21,65,66,73],"hanrei":["最大決昭和44年11月26日","最決平成元年1月30日","最決平成2年7月9日"],"classified":true},{"id":"kei-2025-honshi","univ":"慶應","year":2025,"term":"本試験","course":"法学既修者コース","mondai":"https://www.keio.ac.jp/files/e6e09f23f0aa1401a40a6f7ad9148888342a5618639514e0fc2787e18647eae7","kaisetsu":"https://www.keio.ac.jp/files/6b64898e14f858f6bb1bfacc2717e507b0d72fcdca68411eb3c2c49255b19b96","kaitou":null,"kaisetsuLabel":"出題趣旨","kaisetsuNote":"全科目まとめの出題趣旨。憲法の節を参照","mondaiNote":"合冊の試験問題（憲法・民法・刑法）。憲法の問題を参照","embed":{"mondai":false,"kaisetsu":false,"kaitou":false},"embedWhy":{"mondai":"xfo","kaisetsu":"xfo","kaitou":null},"basis":"解説","units":["精神的自由/集会・結社の自由"],"topics":["集会の自由の憲法上の位置づけ（21条1項・成田新法事件）","市民会館の大集会室と広場という性質の異なる施設","「公の秩序をみだすおそれ」の限定解釈","泉佐野市民会館事件の明白かつ現在の危険"],"articles":[21],"hanrei":["最大判平成4年7月1日","最判平成7年3月7日"],"classified":true},{"id":"chu-2025-ronjutsu","univ":"中央","year":2025,"term":"論述式","course":"法学既修者コース","mondai":"https://www.chuo-u.ac.jp/uploads/2025/04/academics_pro_graduateschool_law_orientation_selection_past_2025_01.pdf","kaisetsu":"https://www.chuo-u.ac.jp/uploads/2025/04/academics_pro_graduateschool_law_orientation_selection_past_2025_07_20250414.pdf","kaitou":null,"kaisetsuLabel":"出題の意図","kaisetsuNote":"全科目まとめの「出題の意図及び評価の視点」。憲法の節を参照","embed":{"mondai":false,"kaisetsu":false,"kaitou":false},"embedWhy":{"mondai":"xfo","kaisetsu":"xfo","kaitou":null},"basis":"解説","units":["統治/地方自治","精神的自由/表現の自由","統治/国会"],"topics":["条例が「法律の範囲内」（94条）といえるか","徳島市公安条例事件の判断枠組み","傍聴人による撮影等の禁止と情報摂取の自由（21条1項）","会議公開原則における国会（57条1項）と地方議会の異同","レペタ事件"],"articles":[14,21,57,92,93,94],"hanrei":["最大判昭和50年9月10日","最大判令和2年11月25日","最大判平成元年3月8日","最大決昭和44年11月26日"],"classified":true},{"id":"dos-2024-zenki","univ":"同志社","year":2024,"term":"前期","course":"法学既修者","mondai":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/questions/2024zenki_mondai_kenpou.pdf","kaisetsu":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/kaisetsu/2024zenki_kaisetsu_kenpou.pdf","kaitou":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/kaitou/2024zenki_kaitou_kenpou.pdf","kaisetsuLabel":"解説","embed":{"mondai":true,"kaisetsu":true,"kaitou":true},"embedWhy":{"mondai":null,"kaisetsu":null,"kaitou":null},"basis":"解説","units":["統治/違憲審査制","包括的基本権・平等/幸福追求権・プライバシー"],"topics":["一部違憲（文言上の一部違憲・意味上の一部違憲）","国籍法違憲判決・郵便法違憲判決","みだりに容貌・姿態を撮影されない自由","指紋押捺・DNA型採取とプライバシー","データベース化された個人識別情報の保護"],"articles":[13],"hanrei":["最大判平成20年6月4日","最大判平成14年9月11日","地判令和4年1月18日","最判令和3年6月15日"],"classified":true},{"id":"dos-2024-koki","univ":"同志社","year":2024,"term":"後期","course":"法学既修者","mondai":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/questions/2024koki_mondai_kenpo.pdf","kaisetsu":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/kaisetsu/2024koki_kaisetsu_kenpo.pdf","kaitou":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/kaitou/2024koki_kaitou_kenpo.pdf","kaisetsuLabel":"解説","embed":{"mondai":true,"kaisetsu":true,"kaitou":true},"embedWhy":{"mondai":null,"kaisetsu":null,"kaitou":null},"basis":"解説","units":["統治/裁判所・司法権","社会権・参政権/参政権・選挙制度","精神的自由/表現の自由"],"topics":["政党の憲法上の位置づけと内部自律（日本共産党袴田事件）","部分社会の法理と司法審査の範囲","選挙運動規制の合憲性","二重の基準論","内容規制と内容中立規制の区別","間接的・付随的制約という論法"],"articles":[21],"hanrei":["最判昭和63年12月20日","最判平成7年5月25日","最判昭和56年6月15日","最大判昭和49年11月6日","最判昭和56年7月21日"],"classified":true},{"id":"kgu-2024-a","univ":"関学","year":2024,"term":"A日程","course":"一般入試（法学既修者）","mondai":"https://www.kwansei.ac.jp/lawschool/assets/Constitution_Solutions_2024A.pdf","kaisetsu":null,"kaitou":null,"kaisetsuLabel":"解説","combined":true,"mondaiNote":"問題と解説（解答例・出題の意図・講評）が1つにまとまったもの","embed":{"mondai":false,"kaisetsu":false,"kaitou":false},"embedWhy":{"mondai":"xfo","kaisetsu":null,"kaitou":null},"basis":"解説","units":["統治/裁判所・司法権","精神的自由/信教の自由・政教分離"],"topics":["政党の憲法上の位置づけとその役割／八月革命説（選択）","付随的違憲審査制（81条）","宗教法人の解散命令と信教の自由（20条1項）","オウム真理教解散命令事件","宗教法人格の剥奪と信者の宗教上の行為への支障"],"articles":[20,81],"hanrei":["最決平成8年1月30日","最大判昭和45年6月24日"],"classified":true},{"id":"kgu-2024-b","univ":"関学","year":2024,"term":"B日程","course":"一般入試（法学既修者）","mondai":"https://www.kwansei.ac.jp/lawschool/assets/Constitution_Solutions_2024B.pdf","kaisetsu":null,"kaitou":null,"kaisetsuLabel":"解説","combined":true,"mondaiNote":"問題と解説（解答例・出題の意図・講評）が1つにまとまったもの","embed":{"mondai":false,"kaisetsu":false,"kaitou":false},"embedWhy":{"mondai":"xfo","kaisetsu":null,"kaitou":null},"basis":"解説","units":["統治/裁判所・司法権","経済的自由・人身の自由/職業選択の自由"],"topics":["部分社会論の内容と司法審査の限界","条例による風俗案内所の営業規制と職業の自由（22条1項）","風営法・施行条例・案内所規制条例の規律相互の関係","営業禁止区域の広狭と規制の必要性・合理性"],"articles":[22],"hanrei":[],"classified":true},{"id":"kgu-2024-c","univ":"関学","year":2024,"term":"C日程","course":"一般入試（法学既修者）","mondai":"https://www.kwansei.ac.jp/lawschool/assets/Constitution_Solutions_2024C.pdf","kaisetsu":null,"kaitou":null,"kaisetsuLabel":"解説","combined":true,"mondaiNote":"問題と解説（解答例・出題の意図・講評）が1つにまとまったもの","embed":{"mondai":false,"kaisetsu":false,"kaitou":false},"embedWhy":{"mondai":"xfo","kaisetsu":null,"kaitou":null},"basis":"解説","units":["統治/国会","精神的自由/表現の自由"],"topics":["国会が「国権の最高機関」（41条）であることの意味（政治的美称説・統括機関説）","税関検査と検閲（21条2項）","札幌税関事件の検閲の定義","事前抑制の原則的禁止"],"articles":[21,41],"hanrei":["最大判昭和59年12月12日"],"classified":true},{"id":"kei-2024-honshi","univ":"慶應","year":2024,"term":"本試験","course":"法学既修者コース","mondai":"https://www.keio.ac.jp/files/e6f3f0bfb29b1a9b6de77c7496e09485c2b5a88a14a11158bd16ba68644941f0","kaisetsu":"https://www.keio.ac.jp/files/6e718879020f005c6743b1e52b30f0ed58f3b492a7c11d5440fb90b30f3ab6dc","kaitou":null,"kaisetsuLabel":"出題趣旨","kaisetsuNote":"全科目まとめの出題趣旨。憲法の節を参照","mondaiNote":"合冊の試験問題（憲法・民法・刑法）。憲法の問題を参照","embed":{"mondai":false,"kaisetsu":false,"kaitou":false},"embedWhy":{"mondai":"xfo","kaisetsu":"xfo","kaitou":null},"basis":"解説","units":["精神的自由/思想・良心の自由","精神的自由/集会・結社の自由"],"topics":["団体の活動の自由と構成員の自由の衝突","目的の範囲の審査と協力義務の限界の審査","八幡製鉄政治献金事件・国労広島地本事件・南九州税理士会事件・群馬司法書士会事件","自治会の特別会費徴収決議"],"articles":[19,21],"hanrei":["最大判昭和45年6月24日","最判昭和50年11月28日","最判平成8年3月19日","最判平成14年4月25日"],"classified":true},{"id":"chu-2024-ronjutsu","univ":"中央","year":2024,"term":"論述式","course":"法学既修者コース","mondai":"https://www.chuo-u.ac.jp/uploads/2024/05/academics_pro_graduateschool_law_orientation_selection_past_2024_01.pdf","kaisetsu":"https://www.chuo-u.ac.jp/uploads/2024/05/academics_pro_graduateschool_law_orientation_selection_past_2024_07.pdf","kaitou":null,"kaisetsuLabel":"出題の意図","kaisetsuNote":"全科目まとめの「出題の意図及び評価の視点」。憲法の節を参照","embed":{"mondai":false,"kaisetsu":false,"kaitou":false},"embedWhy":{"mondai":"xfo","kaisetsu":"xfo","kaitou":null},"basis":"解説","units":["経済的自由・人身の自由/財産権"],"topics":["外交目的による私有財産の無補償収用の可否","財産権の制限が許される場合（29条2項）","森林法事件・証券取引法事件","立法目的の正当性と手段の合理性","廃業を強いられた経営者の補償請求（29条3項）"],"articles":[29],"hanrei":[],"classified":true},{"id":"dos-2023-zenki","univ":"同志社","year":2023,"term":"前期","course":"法学既修者","mondai":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/questions/2023_mondai_kenpo.pdf","kaisetsu":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/kaisetsu/2023_kaisetsu_kenpo.pdf","kaitou":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/kaitou/2023_kaitou_kenpo.pdf","kaisetsuLabel":"解説","embed":{"mondai":true,"kaisetsu":true,"kaitou":true},"embedWhy":{"mondai":null,"kaisetsu":null,"kaitou":null},"basis":"解説","units":["統治/内閣・行政","社会権・参政権/生存権"],"topics":["独立行政委員会の合憲性（65条「行政権は、内閣に属する」）","内閣の指揮監督権","抽象的権利と具体的権利の区別","生存権の法的性格","法律による具体化とその憲法的統制"],"articles":[25,65,66],"hanrei":[],"classified":true},{"id":"dos-2023-koki","univ":"同志社","year":2023,"term":"後期","course":"法学既修者","mondai":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/questions/2023koki_mondai_kenpo.pdf","kaisetsu":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/kaisetsu/2023koki_kaisetsu_kenpo.pdf","kaitou":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/kaitou/2023koki_kaitou_kenpo.pdf","kaisetsuLabel":"解説","embed":{"mondai":true,"kaisetsu":true,"kaitou":true},"embedWhy":{"mondai":null,"kaisetsu":null,"kaitou":null},"basis":"解説","units":["統治/違憲審査制","精神的自由/表現の自由","精神的自由/思想・良心の自由"],"topics":["合憲限定解釈とその限界（税関検査事件）","合憲限定解釈の人権保障機能","名誉毀損表現の事前差止めの実体的要件（北方ジャーナル事件）","謝罪広告の強制と思想・良心の自由"],"articles":[19,21],"hanrei":["最大判昭和61年6月11日","最大判昭和31年7月4日"],"classified":true},{"id":"kgu-2023-a","univ":"関学","year":2023,"term":"A日程","course":"一般入試（法学既修者）","mondai":"https://www.kwansei.ac.jp/lawschool/assets/Constitution_Solutions_2023A.pdf","kaisetsu":null,"kaitou":null,"kaisetsuLabel":"解説","combined":true,"mondaiNote":"問題と解説（解答例・出題の意図・講評）が1つにまとまったもの","embed":{"mondai":false,"kaisetsu":false,"kaitou":false},"embedWhy":{"mondai":"xfo","kaisetsu":null,"kaitou":null},"basis":"解説","units":["統治/違憲審査制","精神的自由/信教の自由・政教分離"],"topics":["付随的違憲審査制／国会単独立法の原則（選択）","市主催の神道式起工式と政教分離（20条3項・89条）","津地鎮祭事件と目的効果基準","習俗的行為と宗教的活動の区別"],"articles":[20,41,89],"hanrei":["最大判昭和52年7月13日"],"classified":true},{"id":"kgu-2023-b","univ":"関学","year":2023,"term":"B日程","course":"一般入試（法学既修者）","mondai":"https://www.kwansei.ac.jp/lawschool/assets/Constitution_Solutions_2023B.pdf","kaisetsu":null,"kaitou":null,"kaisetsuLabel":"解説","combined":true,"mondaiNote":"問題と解説（解答例・出題の意図・講評）が1つにまとまったもの","embed":{"mondai":false,"kaisetsu":false,"kaitou":false},"embedWhy":{"mondai":"xfo","kaisetsu":null,"kaitou":null},"basis":"解説","units":["社会権・参政権/参政権・選挙制度","精神的自由/表現の自由"],"topics":["投票価値の平等／国政調査権（選択）","政治的ビラの投函目的での立入りと住居侵入罪（刑法130条前段）","立川宿舎ビラ投函事件・葛飾分譲マンションビラ投函事件","表現の手段・態様に対する規制"],"articles":[14,21],"hanrei":[],"classified":true},{"id":"kgu-2023-c","univ":"関学","year":2023,"term":"C日程","course":"一般入試（法学既修者）","mondai":"https://www.kwansei.ac.jp/lawschool/assets/Constitutional_Issues_2023C.pdf","kaisetsu":null,"kaitou":null,"kaisetsuLabel":"解説","combined":true,"mondaiNote":"問題と解説（解答例・出題の意図・講評）が1つにまとまったもの","embed":{"mondai":false,"kaisetsu":false,"kaitou":false},"embedWhy":{"mondai":"xfo","kaisetsu":null,"kaitou":null},"basis":"解説","units":["統治/裁判所・司法権","包括的基本権・平等/法の下の平等"],"topics":["統治行為論の内容と射程","国籍法の区別の憲法適合性（14条1項）","国籍法3条1項違憲判決","非嫡出子・準正要件と立法目的との合理的関連性"],"articles":[10,14],"hanrei":["最大判平成20年6月4日"],"classified":true},{"id":"kei-2023-honshi","univ":"慶應","year":2023,"term":"本試験","course":"法学既修者コース","mondai":"https://www.keio.ac.jp/files/41c45e8769dad5e4560da9268556a4bd1ede4051a3b398463f6d4be8697bf04e","kaisetsu":"https://www.keio.ac.jp/files/6b9b00553614c4dc9d67c89bda1a2471b9dc876e62c9aa3d112ffb6b8532c5e2","kaitou":null,"kaisetsuLabel":"出題趣旨","kaisetsuNote":"全科目まとめの出題趣旨。憲法の節を参照","mondaiNote":"合冊の試験問題（科目名の記載なし）。憲法の問題を参照","embed":{"mondai":false,"kaisetsu":false,"kaitou":false},"embedWhy":{"mondai":"xfo","kaisetsu":"xfo","kaitou":null},"basis":"解説","units":["社会権・参政権/参政権・選挙制度"],"topics":["供託金制度の合憲性","「立候補の権利」の憲法上の位置づけ（15条説・13条説・43条説・44条説）","候補者濫立の防止という立法目的","選挙権・被選挙権の制約に対する審査"],"articles":[13,15,43,44],"hanrei":[],"classified":true},{"id":"dos-2022-zenki","univ":"同志社","year":2022,"term":"前期","course":"法学既修者","mondai":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/questions/2022_mondai_kenpo.pdf","kaisetsu":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/kaisetsu/2022_kaisetsu_kenpo.pdf","kaitou":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/kaitou/2022_kaitou_kenpo.pdf","kaisetsuLabel":"解説","embed":{"mondai":true,"kaisetsu":true,"kaitou":true},"embedWhy":{"mondai":null,"kaisetsu":null,"kaitou":null},"basis":"解説","units":["統治/国会","経済的自由・人身の自由/財産権"],"topics":["国政調査権の性格（補助的権能説・独立権能説）","国政調査権の限界（司法権の独立・人権の尊重）","財産権の内在的制約と損失補償の要否（奈良県ため池条例事件）","補償規定を欠く場合の直接請求（河川附近地制限令事件）"],"articles":[29,41,62],"hanrei":["最大判昭和38年6月26日","最大判昭和43年11月27日"],"classified":true},{"id":"dos-2022-koki","univ":"同志社","year":2022,"term":"後期","course":"法学既修者","mondai":"http://doshisha-law.kir.jp/stg/wp-content/uploads/2022/04/2022_mondai_kenpou2.pdf","kaisetsu":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/kaisetsu/2022_kaisetsu_kenpou2.pdf","kaitou":"http://doshisha-law.kir.jp/stg/wp-content/uploads/2022/04/2022_kenpout2.pdf","kaisetsuLabel":"解説","embed":{"mondai":false,"kaisetsu":true,"kaitou":false},"embedWhy":{"mondai":"http","kaisetsu":null,"kaitou":"http"},"basis":"解説","units":["総論/憲法の意義・最高法規性","統治/違憲審査制","社会権・参政権/参政権・選挙制度"],"topics":["憲法優位説と国際法優位説","条約に対する違憲審査の可否（81条）","砂川事件","被選挙権・立候補の自由の憲法上の根拠（13条・14条1項・15条1項・44条但書）","三井美唄労組事件"],"articles":[9,13,14,15,44,47,81,98],"hanrei":["最大判昭和34年12月16日","最大判昭和43年12月4日","最大判平成17年9月14日","高判令和元年12月11日","最判昭和56年7月21日"],"classified":true},{"id":"kgu-2022-a","univ":"関学","year":2022,"term":"A日程","course":"一般入試（法学既修者）","mondai":"https://www.kwansei.ac.jp/lawschool/assets/Constitutional_Issues_2022A.pdf","kaisetsu":null,"kaitou":null,"kaisetsuLabel":"解説","combined":true,"mondaiNote":"問題と解説（解答例・出題の意図・講評）が1つにまとまったもの","embed":{"mondai":false,"kaisetsu":false,"kaitou":false},"embedWhy":{"mondai":"xfo","kaisetsu":null,"kaitou":null},"basis":"解説","units":["精神的自由/表現の自由","人権総論/公共の福祉・審査基準"],"topics":["ヘイトスピーチ処罰規定の合憲性","表現内容規制と厳格審査","定義の明確性と漠然性の法理","過度の広汎性","大阪市ヘイトスピーチ条例事件"],"articles":[21],"hanrei":["最大決平成10年12月1日","最大判平成24年12月7日"],"classified":true},{"id":"kgu-2022-b","univ":"関学","year":2022,"term":"B日程","course":"一般入試（法学既修者）","mondai":"https://www.kwansei.ac.jp/lawschool/assets/Constitutional_Issues_2022B.pdf","kaisetsu":null,"kaitou":null,"kaisetsuLabel":"解説","combined":true,"mondaiNote":"問題と解説（解答例・出題の意図・講評）が1つにまとまったもの","embed":{"mondai":false,"kaisetsu":false,"kaitou":false},"embedWhy":{"mondai":"xfo","kaisetsu":null,"kaitou":null},"basis":"解説","units":["統治/国会","精神的自由/思想・良心の自由"],"topics":["命令的委任の禁止／客観訴訟（選択）","強制加入団体の目的の範囲の審査","構成員の協力義務の限界の審査","二段階審査と一段階審査","弁護士会の特別会費徴収決議と思想・良心の自由"],"articles":[19,43],"hanrei":["最大判昭和45年6月24日","最判昭和50年11月28日","最判平成8年3月19日","最判平成10年3月13日","最判平成14年4月25日"],"classified":true},{"id":"kgu-2022-c","univ":"関学","year":2022,"term":"C日程","course":"一般入試（法学既修者）","mondai":"https://www.kwansei.ac.jp/lawschool/assets/Constitutional_Issues_2022C.pdf","kaisetsu":null,"kaitou":null,"kaisetsuLabel":"解説","combined":true,"mondaiNote":"問題と解説（解答例・出題の意図・講評）が1つにまとまったもの","embed":{"mondai":false,"kaisetsu":false,"kaitou":false},"embedWhy":{"mondai":"xfo","kaisetsu":null,"kaitou":null},"basis":"解説","units":["統治/裁判所・司法権","社会権・参政権/参政権・選挙制度"],"topics":["「法律上の争訟」（裁判所法3条）の意義","選挙犯罪による選挙権・被選挙権の停止","選挙権の制約に対する審査（15条）","在外日本人選挙権制限違憲判決の枠組み"],"articles":[15],"hanrei":["最判昭和56年4月7日"],"classified":true},{"id":"kgu-2022-d","univ":"関学","year":2022,"term":"D日程","course":"一般入試（法学既修者）","mondai":"https://www.kwansei.ac.jp/lawschool/assets/Constitution%20Q%26A%202022D.pdf","kaisetsu":null,"kaitou":null,"kaisetsuLabel":"解説","combined":true,"mondaiNote":"問題と解説（解答例・出題の意図・講評）が1つにまとまったもの","embed":{"mondai":false,"kaisetsu":false,"kaitou":false},"embedWhy":{"mondai":"xfo","kaisetsu":null,"kaitou":null},"basis":"解説","units":["統治/内閣・行政","精神的自由/表現の自由"],"topics":["衆議院の解散／憲法改正の限界（選択）","地方公務員の政治的行為の制限と表現の自由（21条）","猿払事件・堀越事件","条例による政治的行為の追加の可否","合憲限定解釈"],"articles":[15,21],"hanrei":["最判平成24年12月7日"],"classified":true},{"id":"kei-2022-honshi","univ":"慶應","year":2022,"term":"本試験","course":"法学既修者コース","mondai":"https://www.keio.ac.jp/files/b638f5495bdb39a398cd3e6ab6496bc1de5101dc3af16ad3710b3ff17753d98f","kaisetsu":"https://www.keio.ac.jp/files/872119430852e7b5ed47c5e9f58d7230ec6dc480d6843308606a46ea21c5dbd4","kaitou":null,"kaisetsuLabel":"出題趣旨","kaisetsuNote":"全科目まとめの出題趣旨。憲法の節を参照","mondaiNote":"合冊の試験問題（憲法・民法・刑法）。憲法の問題を参照","embed":{"mondai":false,"kaisetsu":false,"kaitou":false},"embedWhy":{"mondai":"xfo","kaisetsu":"xfo","kaitou":null},"basis":"解説","units":["精神的自由/学問の自由・大学の自治","精神的自由/集会・結社の自由"],"topics":["私立大学内部での教室使用","学生の学問研究の自由（23条）","大学の自治とポポロ事件","集会の自由（21条）による構成の可否","私人間効力とパブリックフォーラム論の限界"],"articles":[21,23],"hanrei":["最大判昭和38年5月22日","最判平成7年3月7日","最判昭和52年3月15日","最判昭和49年7月19日"],"classified":true},{"id":"dos-2021-zenki","univ":"同志社","year":2021,"term":"前期","course":"法学既修者","mondai":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/questions/2021_mondai_kenpo.pdf","kaisetsu":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/kaisetsu/2021_kaisetsu_kenpo.pdf","kaitou":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/kaitou/2021_kaitou_kenpo.pdf","kaisetsuLabel":"解説","embed":{"mondai":true,"kaisetsu":true,"kaitou":true},"embedWhy":{"mondai":null,"kaisetsu":null,"kaitou":null},"basis":"解説","units":["統治/国会","統治/財政","包括的基本権・平等/法の下の平等","経済的自由・人身の自由/職業選択の自由"],"topics":["委任立法の根拠と限界（73条6号但書）","授権法律の憲法適合性と受任命令の授権法律適合性","租税立法における平等原則（サラリーマン税金訴訟）","酒類販売業の免許制と職業選択の自由"],"articles":[14,22,73],"hanrei":["最大判昭和25年2月1日","最大判昭和60年3月27日","最判平成3年7月9日","最判平成4年12月15日","最判平成10年7月16日","最判平成14年6月4日"],"classified":true},{"id":"dos-2021-koki","univ":"同志社","year":2021,"term":"後期","course":"法学既修者","mondai":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/questions/2021_mondai_kenpou2.pdf","kaisetsu":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/kaisetsu/2021_kaisetsu_kenpou2.pdf","kaitou":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/kaitou/2021_kenpout2.pdf","kaisetsuLabel":"解説","embed":{"mondai":true,"kaisetsu":true,"kaitou":true},"embedWhy":{"mondai":null,"kaisetsu":null,"kaitou":null},"basis":"解説","units":["統治/違憲審査制","精神的自由/表現の自由"],"topics":["立法事実の変化と法律の憲法適合性","合理的是正期間論","違憲判断の手法と判例変更","条例による表現の自由の制約","二重の基準論の根拠","審査の厳格度（権利の重要性・制約態様）"],"articles":[21],"hanrei":["最大判昭和51年4月14日","最大判昭和60年7月17日","最大判平成17年9月14日","最大判平成20年6月4日","最大決平成25年9月4日","最決平成26年7月22日"],"classified":true},{"id":"rit-2021-zenki","univ":"立命館","year":2021,"term":"前期","course":"法学既修者（B方式）","mondai":"https://www.ritsumei.ac.jp/lawschool/assets/file/admission/past-21z_koho.pdf","kaisetsu":"https://www.ritsumei.ac.jp/lawschool/assets/file/admission/past-comment2021-z.pdf","kaitou":null,"kaisetsuLabel":"入試講評","kaisetsuNote":"全科目まとめの講評。「公法（憲法）」の節を参照","mondaiNote":"行政法と合わせた「公法」1冊。憲法の問題を参照","embed":{"mondai":true,"kaisetsu":true,"kaitou":false},"embedWhy":{"mondai":null,"kaisetsu":null,"kaitou":null},"basis":"解説","units":["精神的自由/表現の自由","経済的自由・人身の自由/職業選択の自由","総論/憲法の意義・最高法規性"],"topics":["SNSにおける誹謗中傷表現の規制の合憲性","投稿者の表現の自由とSNS事業者の営業の自由・表現の自由","検索結果削除請求事件","憲法改正の限界","憲法制定権力と憲法改正権の関係"],"articles":[21,22,96],"hanrei":["最決平成30年1月31日"],"classified":true},{"id":"kei-2021-honshi","univ":"慶應","year":2021,"term":"本試験","course":"法学既修者コース","mondai":"https://www.keio.ac.jp/files/a480331e1002fe3abbdee6ccdb1df637735010343577d69380dc72c8aada76c0","kaisetsu":"https://www.keio.ac.jp/files/4f12965d32b9f940839fe029e28338874f5608034b292305f4b84d5f932f3e14","kaitou":null,"kaisetsuLabel":"出題趣旨","kaisetsuNote":"全科目まとめの出題趣旨。憲法の節を参照","mondaiNote":"合冊の試験問題（憲法・刑法）。憲法の問題を参照","embed":{"mondai":false,"kaisetsu":false,"kaitou":false},"embedWhy":{"mondai":"xfo","kaisetsu":"xfo","kaitou":null},"basis":"解説","units":["経済的自由・人身の自由/財産権"],"topics":["休業要請と損失補償（29条3項）","「公共のために用ひる」の意義","特別の犠牲と内在的制約","補償規定を欠く場合の直接請求（河川附近地制限令事件）"],"articles":[29],"hanrei":["最大判昭和43年11月27日"],"classified":true},{"id":"kei-2021-tsuishi","univ":"慶應","year":2021,"term":"追試験","course":"法学既修者コース","mondai":"https://www.keio.ac.jp/files/b185a83f397aa2ad71550041176b5cbe157a380e2708c39bb629f461c79afd05","kaisetsu":"https://www.keio.ac.jp/files/fb768707b81713aa90505d34e378bf515c76c03248cc03a20bb505960e6f9788","kaitou":null,"kaisetsuLabel":"出題趣旨","kaisetsuNote":"全科目まとめの出題趣旨。憲法の節を参照","mondaiNote":"合冊の試験問題（憲法・刑法）。憲法の問題を参照","embed":{"mondai":false,"kaisetsu":false,"kaitou":false},"embedWhy":{"mondai":"xfo","kaisetsu":"xfo","kaitou":null},"basis":"解説","units":["統治/裁判所・司法権"],"topics":["「法律上の争訟」（裁判所法3条1項）の意義","地方議会議員の懲罰議決と司法審査","村議会議員出席停止事件とその判例変更","部分社会の法理"],"articles":[76],"hanrei":["最大判昭和35年10月19日","最判昭和52年3月15日","最判平成30年4月26日","最判平成31年2月14日"],"classified":true},{"id":"dos-2020-zenki","univ":"同志社","year":2020,"term":"前期","course":"法学既修者","mondai":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/questions/2020_mondai_kennpo.pdf","kaisetsu":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/kaisetsu/2020_kaisetsu_kenpo.pdf","kaitou":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/kaitou/2020_kaitou_kenpo.pdf","kaisetsuLabel":"解説","embed":{"mondai":true,"kaisetsu":true,"kaitou":true},"embedWhy":{"mondai":null,"kaisetsu":null,"kaitou":null},"basis":"解説","units":["精神的自由/表現の自由","統治/財政","統治/国会"],"topics":["記者の取材源の秘匿と証言拒絶","報道・取材の自由（21条）","予算の法的性格","国会による予算修正権とその限界","内閣の予算提案権（73条5号・86条）"],"articles":[21,60,73,86],"hanrei":["高決昭和54年8月31日","最大判昭和27年8月6日","最大決昭和44年11月26日"],"classified":true},{"id":"dos-2020-koki","univ":"同志社","year":2020,"term":"後期","course":"法学既修者","mondai":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/questions/2020_mondai_kenpou2.pdf","kaisetsu":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/kaisetsu/2020_kaisetsu_kenpou2.pdf","kaitou":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/kaitou/2020_kenpout2.pdf","kaisetsuLabel":"解説","embed":{"mondai":true,"kaisetsu":true,"kaitou":true},"embedWhy":{"mondai":null,"kaisetsu":null,"kaitou":null},"basis":"解説","units":[],"topics":[],"articles":[],"hanrei":[],"classified":false},{"id":"rit-2020-zenki","univ":"立命館","year":2020,"term":"前期","course":"法学既修者（B方式）","mondai":"https://www.ritsumei.ac.jp/lawschool/assets/file/admission/past-20z_koho.pdf","kaisetsu":"https://www.ritsumei.ac.jp/lawschool/assets/file/admission/past-comment2020-z.pdf","kaitou":null,"kaisetsuLabel":"入試講評","kaisetsuNote":"全科目まとめの講評。「公法（憲法）」の節を参照","mondaiNote":"行政法と合わせた「公法」1冊。憲法の問題を参照","embed":{"mondai":true,"kaisetsu":true,"kaitou":false},"embedWhy":{"mondai":null,"kaisetsu":null,"kaitou":null},"basis":"解説","units":["精神的自由/表現の自由","統治/国会"],"topics":["知る権利・情報開示請求権（21条1項）","抽象的権利と法律による具体化","刑事確定訴訟記録の閲覧請求の憲法上の位置づけ","条約の事後承認における国会の修正の可否","修正したうえでの承認の議決の意味"],"articles":[21],"hanrei":[],"classified":true},{"id":"rit-2020-chuki","univ":"立命館","year":2020,"term":"中期","course":"法学既修者（B方式）","mondai":"https://www.ritsumei.ac.jp/lawschool/assets/file/admission/past-20c_koho.pdf","kaisetsu":"https://www.ritsumei.ac.jp/lawschool/assets/file/admission/past-comment2020-c.pdf","kaitou":null,"kaisetsuLabel":"入試講評","kaisetsuNote":"全科目まとめの講評。「公法（憲法）」の節を参照","mondaiNote":"行政法と合わせた「公法」1冊。憲法の問題を参照","embed":{"mondai":true,"kaisetsu":true,"kaitou":false},"embedWhy":{"mondai":null,"kaisetsu":null,"kaitou":null},"basis":"解説","units":["精神的自由/表現の自由","社会権・参政権/参政権・選挙制度","統治/国会"],"topics":["検閲の定義（札幌税関事件）","税関検査が検閲に当たらないとされる三つの理由","合憲限定解釈の可能性と妥当性","「全国民の代表」（43条1項）の意義","比例代表選挙と党籍離脱・除名による議席喪失"],"articles":[21,43],"hanrei":["最大判昭和59年12月12日"],"classified":true},{"id":"kei-2020-honshi","univ":"慶應","year":2020,"term":"本試験","course":"法学既修者コース","mondai":"https://www.keio.ac.jp/files/2355c2dfc80f27dc03f516a4edefb5c200be27fa303f2e659161f027356afcb7","kaisetsu":"https://www.keio.ac.jp/files/c71a6c58a861c139aa6f9540eed0aae237bd68f41f433ad3e0cce51d357e19e3","kaitou":null,"kaisetsuLabel":"出題趣旨","kaisetsuNote":"全科目まとめの出題趣旨。憲法の節を参照","mondaiNote":"合冊の試験問題（憲法・刑法）。憲法の問題を参照","embed":{"mondai":false,"kaisetsu":false,"kaitou":false},"embedWhy":{"mondai":"xfo","kaisetsu":"xfo","kaitou":null},"basis":"解説","units":["精神的自由/集会・結社の自由"],"topics":["パブリックフォーラム論","町の管理する施設における集会と施設管理権の裁量","本件条例の限定解釈","泉佐野市民会館事件との共通点・相違点"],"articles":[21],"hanrei":["最判平成7年3月7日"],"classified":true},{"id":"dos-2019-zenki","univ":"同志社","year":2019,"term":"前期","course":"法学既修者","mondai":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/questions/mondaikenpou.pdf","kaisetsu":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/kaisetsu/kaikenpou-2.pdf","kaitou":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/kaitou/yoshikenpou.pdf","kaisetsuLabel":"解説","embed":{"mondai":true,"kaisetsu":true,"kaitou":true},"embedWhy":{"mondai":null,"kaisetsu":null,"kaitou":null},"basis":"解説","units":["包括的基本権・平等/幸福追求権・プライバシー","統治/裁判所・司法権"],"topics":["憲法13条を根拠とする「新しい人権」","人格的自律権構想とその批判","裁判官の罷免事由（78条・弾劾裁判・国民審査）","裁判官の懲戒と政治運動（寺西判事補事件）","司法権の独立"],"articles":[13,64,78,79,80],"hanrei":["最大決平成10年12月1日","最大判昭和49年11月6日"],"classified":true},{"id":"dos-2019-koki","univ":"同志社","year":2019,"term":"後期","course":"法学既修者","mondai":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/questions/2019_kenpou2.pdf","kaisetsu":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/kaisetsu/2019_kai_kenpou.pdf","kaitou":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/kaitou/2019_kenpout2.pdf","kaisetsuLabel":"解説","embed":{"mondai":true,"kaisetsu":true,"kaitou":true},"embedWhy":{"mondai":null,"kaisetsu":null,"kaitou":null},"basis":"解説","units":["統治/違憲審査制","統治/国会"],"topics":["憲法違反の主張の立て方（主張・反論・私見）","およそ通らない主張をしないこと","衆議院の優越（59条2項〜4項・60条・61条・67条2項）","二院制の原則と法律による優越の拡張"],"articles":[13,59,60,61,67],"hanrei":["地判平成6年4月27日","最大判平成29年3月15日"],"classified":true},{"id":"rit-2019-zenki","univ":"立命館","year":2019,"term":"前期","course":"法学既修者（B方式）","mondai":"https://www.ritsumei.ac.jp/lawschool/assets/file/admission/past-19z_koho.pdf","kaisetsu":"https://www.ritsumei.ac.jp/lawschool/assets/file/admission/past-comment2019-z.pdf","kaitou":null,"kaisetsuLabel":"入試講評","kaisetsuNote":"全科目まとめの講評。「公法（憲法）」の節を参照","mondaiNote":"行政法と合わせた「公法」1冊。憲法の問題を参照","embed":{"mondai":true,"kaisetsu":true,"kaitou":false},"embedWhy":{"mondai":null,"kaisetsu":null,"kaitou":null},"basis":"解説","units":["精神的自由/表現の自由","統治/国会"],"topics":["表現内容規制と内容中立規制の二分論","二分論の根拠（思想の自由市場論）","審査の厳格度","国政調査権の限界","国権の最高機関（41条）と限界論の関係"],"articles":[21,41],"hanrei":[],"classified":true},{"id":"rit-2019-chuki","univ":"立命館","year":2019,"term":"中期","course":"法学既修者（B方式）","mondai":"https://www.ritsumei.ac.jp/lawschool/assets/file/admission/past-19c_koho.pdf","kaisetsu":"https://www.ritsumei.ac.jp/lawschool/assets/file/admission/past-comment2019-c.pdf","kaitou":null,"kaisetsuLabel":"入試講評","kaisetsuNote":"全科目まとめの講評。「公法（憲法）」の節を参照","mondaiNote":"行政法と合わせた「公法」1冊。憲法の問題を参照","embed":{"mondai":true,"kaisetsu":true,"kaitou":false},"embedWhy":{"mondai":null,"kaisetsu":null,"kaitou":null},"basis":"解説","units":["人権総論/人権の享有主体","統治/裁判所・司法権"],"topics":["外国人の人権享有主体性（権利性質説）","在留期間更新の不許可と政治活動の自由","マクリーン事件","司法審査の範囲"],"articles":[21,22],"hanrei":[],"classified":true},{"id":"rit-2019-koki","univ":"立命館","year":2019,"term":"後期","course":"法学既修者（B方式）","mondai":"https://www.ritsumei.ac.jp/lawschool/assets/file/admission/past-19k_koho.pdf","kaisetsu":"https://www.ritsumei.ac.jp/lawschool/assets/file/admission/past-comment2019-k.pdf","kaitou":null,"kaisetsuLabel":"入試講評","kaisetsuNote":"全科目まとめの講評。「公法（憲法）」の節を参照","mondaiNote":"行政法と合わせた「公法」1冊。憲法の問題を参照","embed":{"mondai":true,"kaisetsu":true,"kaitou":false},"embedWhy":{"mondai":null,"kaisetsu":null,"kaitou":null},"basis":"解説","units":["精神的自由/表現の自由","統治/内閣・行政","統治/裁判所・司法権"],"topics":["知る自由（21条1項）","受刑者・被拘禁者の新聞閲読の自由","よど号ハイジャック新聞記事抹消事件","衆議院の解散をめぐる諸説（7条3号説・69条限定説）","解散の司法審査と統治行為論"],"articles":[7,19,21,65,69],"hanrei":["最大判昭和58年6月22日"],"classified":true},{"id":"kei-2019-honshi","univ":"慶應","year":2019,"term":"本試験","course":"法学既修者コース","mondai":"https://www.keio.ac.jp/files/6c15576773e4650fbea21ca2a3192a459b7676610315ed888a442d263241e30d","kaisetsu":"https://www.keio.ac.jp/files/8f67afa1006f91473cd8e4f952e59f99b7b451703afa4d2d261f04791c8d353b","kaitou":null,"kaisetsuLabel":"出題趣旨","kaisetsuNote":"全科目まとめの出題趣旨。憲法の節を参照","mondaiNote":"合冊の試験問題（憲法・刑法）。憲法の問題を参照","embed":{"mondai":false,"kaisetsu":false,"kaitou":false},"embedWhy":{"mondai":"xfo","kaisetsu":"xfo","kaitou":null},"basis":"解説","units":["包括的基本権・平等/幸福追求権・プライバシー","包括的基本権・平等/法の下の平等"],"topics":["性同一性障害者特例法3条1項4号（生殖機能喪失要件）の合憲性","身体への侵襲を受けない自由・自己決定権（13条）","「子なし要件」をめぐる先例","性別取扱変更要件と14条1項・24条"],"articles":[13,14,24],"hanrei":["最決平成19年10月19日"],"classified":true},{"id":"dos-2018-zenki","univ":"同志社","year":2018,"term":"前期","course":"法学既修者","mondai":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/questions/2018_kenpou.pdf","kaisetsu":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/kaisetsu/2018_kenpou_k.pdf","kaitou":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/kaitou/2018_kenpout.pdf","kaisetsuLabel":"解説","embed":{"mondai":true,"kaisetsu":true,"kaitou":true},"embedWhy":{"mondai":null,"kaisetsu":null,"kaitou":null},"basis":"解説","units":["包括的基本権・平等/幸福追求権・プライバシー","統治/裁判所・司法権","総論/平和主義"],"topics":["生命・身体・健康のあり方に関する自己決定権（13条後段）","予防接種の義務付けと刑罰規定の合憲性","統治行為論の意義","統治行為とされうる事項の整理","砂川事件・苫米地事件"],"articles":[9,13,69,98],"hanrei":["最大判昭和34年12月16日","最大判昭和35年6月8日","最判平成8年8月28日"],"classified":true},{"id":"dos-2018-koki","univ":"同志社","year":2018,"term":"後期","course":"法学既修者","mondai":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/questions/2018_kenpou2.pdf","kaisetsu":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/kaisetsu/2018_kenpouk2.pdf","kaitou":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/kaitou/2018_kenpout2.pdf","kaisetsuLabel":"解説","embed":{"mondai":true,"kaisetsu":true,"kaitou":true},"embedWhy":{"mondai":null,"kaisetsu":null,"kaitou":null},"basis":"解説","units":["包括的基本権・平等/法の下の平等","統治/国会"],"topics":["同性間の婚姻の自由（24条1項・13条後段）","性的指向による区別的取扱いと14条1項","24条1項の制定趣旨","国会中心立法の原則・国会単独立法の原則（41条・59条1項）","執行命令と委任命令（73条6号）","議院規則（58条2項）・最高裁判所規則（77条）"],"articles":[13,14,24,41,58,59,73,77],"hanrei":["最大判昭和39年5月29日","最大決昭和25年6月24日"],"classified":true},{"id":"rit-2018-zenki","univ":"立命館","year":2018,"term":"前期","course":"法学既修者（B方式）","mondai":"https://www.ritsumei.ac.jp/lawschool/assets/file/admission/past-18z_koho.pdf","kaisetsu":"https://www.ritsumei.ac.jp/lawschool/assets/file/admission/past-comment2018-z.pdf","kaitou":null,"kaisetsuLabel":"入試講評","kaisetsuNote":"全科目まとめの講評。「公法（憲法）」の節を参照","mondaiNote":"行政法と合わせた「公法」1冊。憲法の問題を参照","embed":{"mondai":true,"kaisetsu":true,"kaitou":false},"embedWhy":{"mondai":null,"kaisetsu":null,"kaitou":null},"basis":"解説","units":["経済的自由・人身の自由/職業選択の自由","統治/内閣・行政","統治/国会"],"topics":["職業の自由（22条1項）","規制目的二分論とその批判","公衆浴場の距離制限規定の合憲性","衆議院の解散（7条3号・69条）","解散権の根拠と限界"],"articles":[7,22,65,69],"hanrei":["最大判昭和50年4月30日"],"classified":true},{"id":"rit-2018-chuki","univ":"立命館","year":2018,"term":"中期","course":"法学既修者（B方式）","mondai":"https://www.ritsumei.ac.jp/lawschool/assets/file/admission/past-18c_koho.pdf","kaisetsu":"https://www.ritsumei.ac.jp/lawschool/assets/file/admission/past-comment2018-c2.pdf","kaitou":null,"kaisetsuLabel":"入試講評","kaisetsuNote":"全科目まとめの講評。「公法（憲法）」の節を参照","mondaiNote":"行政法と合わせた「公法」1冊。憲法の問題を参照","embed":{"mondai":true,"kaisetsu":true,"kaitou":false},"embedWhy":{"mondai":null,"kaisetsu":null,"kaitou":null},"basis":"解説","units":["精神的自由/表現の自由","統治/裁判所・司法権"],"topics":["名誉権と表現の自由の調整","刑法230条の2による立法上の調整（公共の利害・公益目的・真実性の証明）","真実性の誤信と相当の理由","裁判所の権限と司法権の範囲"],"articles":[21],"hanrei":["最大判昭和44年6月25日"],"classified":true},{"id":"rit-2018-koki","univ":"立命館","year":2018,"term":"後期","course":"法学既修者（B方式）","mondai":"https://www.ritsumei.ac.jp/lawschool/assets/file/admission/past-18k_koho.pdf","kaisetsu":"https://www.ritsumei.ac.jp/lawschool/assets/file/admission/past-comment2018-k.pdf","kaitou":null,"kaisetsuLabel":"入試講評","kaisetsuNote":"全科目まとめの講評。「公法（憲法）」の節を参照","mondaiNote":"行政法と合わせた「公法」1冊。憲法の問題を参照","embed":{"mondai":true,"kaisetsu":true,"kaitou":false},"embedWhy":{"mondai":null,"kaisetsu":null,"kaitou":null},"basis":"解説","units":["精神的自由/表現の自由","精神的自由/集会・結社の自由"],"topics":["表現の自由（21条1項）","法令審査と適用審査の区別","パブリック・フォーラム論","駅前広場での街頭宣伝・ビラ配布と不退去罪（刑法130条後段）","厳格審査とそのあてはめ"],"articles":[21],"hanrei":["最判昭和59年12月18日","最判平成7年3月7日"],"classified":true},{"id":"kei-2018-honshi","univ":"慶應","year":2018,"term":"本試験","course":"法学既修者コース","mondai":"https://www.keio.ac.jp/files/45ddb71cedeeb32490b7835dc1f5fef17ce8c296c17eadeea9e322c1ba1ccdb9","kaisetsu":"https://www.keio.ac.jp/files/7342658feab6980cfebfe65de494a43652a77b7472735a2d4dc63681aed08797","kaitou":null,"kaisetsuLabel":"出題趣旨","kaisetsuNote":"全科目まとめの出題趣旨。憲法の節を参照","mondaiNote":"合冊の試験問題（憲法・刑法）。憲法の問題を参照","embed":{"mondai":false,"kaisetsu":false,"kaitou":false},"embedWhy":{"mondai":"xfo","kaisetsu":"xfo","kaitou":null},"basis":"解説","units":["精神的自由/信教の自由・政教分離","統治/違憲審査制"],"topics":["仏式の市民葬に対する自治体の関与と政教分離","20条1項後段・20条3項・89条の役割分担","「宗教的活動」該当性と目的効果基準","津地鎮祭判決の枠組み","具体的権利侵害がない場合の訴訟形態（住民訴訟）"],"articles":[20,89],"hanrei":[],"classified":true},{"id":"dos-2017-zenki","univ":"同志社","year":2017,"term":"前期","course":"法学既修者","mondai":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/questions/2017_kenpou.pdf","kaisetsu":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/kaisetsu/2017_kenpouk.pdf","kaitou":null,"kaisetsuLabel":"解説","embed":{"mondai":true,"kaisetsu":true,"kaitou":false},"embedWhy":{"mondai":null,"kaisetsu":null,"kaitou":null},"basis":"解説","units":["経済的自由・人身の自由/職業選択の自由","社会権・参政権/参政権・選挙制度","総論/国民主権・象徴天皇制"],"topics":["公務員就任権の憲法上の根拠（22条1項説・13条後段説・15条1項説・14条1項説）","被保佐人の地方公務員就任権の制約","成年被後見人選挙権制限違憲判決","天皇の「象徴としての公的行為」","国事行為（7条）の範囲と準国事行為説"],"articles":[4,7,13,14,15,22],"hanrei":["地判平成25年3月14日"],"classified":true},{"id":"dos-2017-koki","univ":"同志社","year":2017,"term":"後期","course":"法学既修者","mondai":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/questions/2017_kenpou2.pdf","kaisetsu":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/kaisetsu/2017_kenpouk2.pdf","kaitou":null,"kaisetsuLabel":"解説","embed":{"mondai":true,"kaisetsu":true,"kaitou":false},"embedWhy":{"mondai":null,"kaisetsu":null,"kaitou":null},"basis":"解説","units":["精神的自由/集会・結社の自由","精神的自由/表現の自由","統治/国会","統治/内閣・行政"],"topics":["集会の自由と市民会館の利用不許可","表現活動の場の提供者として公権力が登場する類型","泉佐野市民会館事件・上尾市福祉会館事件","内閣の法律案提出権と国会単独立法の原則","「国務を総理」（73条1号）"],"articles":[21,41,59,72,73],"hanrei":["最判平成7年3月7日"],"classified":true},{"id":"kei-2017-honshi","univ":"慶應","year":2017,"term":"本試験","course":"法学既修者コース","mondai":"https://www.keio.ac.jp/files/ea58e7340d7c7966883421fff4ef3ce8de8d9bfa2f13f7a4e4ab4686765d3f6a","kaisetsu":null,"kaitou":null,"kaisetsuLabel":"出題趣旨","kaisetsuNote":"全科目まとめの出題趣旨。憲法の節を参照","mondaiNote":"合冊の試験問題（科目名の記載なし）。憲法の問題を参照","embed":{"mondai":false,"kaisetsu":false,"kaitou":false},"embedWhy":{"mondai":"xfo","kaisetsu":null,"kaitou":null},"basis":"問題","units":["包括的基本権・平等/幸福追求権・プライバシー","経済的自由・人身の自由/居住移転・国籍離脱"],"topics":["登山届出条例による届出義務と過料","自己決定権（13条後段）","移動の自由・入山の自由","条例による権利制限と目的・手段の審査"],"articles":[13,22],"hanrei":[],"classified":true},{"id":"dos-2016-zenki","univ":"同志社","year":2016,"term":"前期","course":"法学既修者","mondai":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/questions/2016_kenpou.pdf","kaisetsu":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/kaisetsu/2016_kenpouk.pdf","kaitou":null,"kaisetsuLabel":"解説","embed":{"mondai":true,"kaisetsu":true,"kaitou":false},"embedWhy":{"mondai":null,"kaisetsu":null,"kaitou":null},"basis":"解説","units":["精神的自由/思想・良心の自由","経済的自由・人身の自由/財産権","統治/地方自治","経済的自由・人身の自由/適正手続・刑事手続上の権利"],"topics":["19条適合性の判断枠組みと違憲審査基準","国旗国歌起立斉唱事件（間接的制約と必要性・合理性）","条例による財産権の規制（29条2項の「法律」に条例を含むか）","奈良県ため池条例事件","条例への罰則の委任（31条・73条6号但書）","租税条例と84条"],"articles":[19,29,30,31,84,92,94],"hanrei":["最判平成23年5月30日","最判平成23年6月6日","最判平成23年6月14日","最大判昭和38年6月26日","最大判昭和37年5月30日","最判平成25年3月21日"],"classified":true},{"id":"dos-2016-koki","univ":"同志社","year":2016,"term":"後期","course":"法学既修者","mondai":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/questions/2016_kenpou2.pdf","kaisetsu":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/kaisetsu/2016_kenpouk2.pdf","kaitou":null,"kaisetsuLabel":"解説","embed":{"mondai":true,"kaisetsu":true,"kaitou":false},"embedWhy":{"mondai":null,"kaisetsu":null,"kaitou":null},"basis":"解説","units":["精神的自由/表現の自由","総論/憲法の意義・最高法規性"],"topics":["取材の自由の憲法上の位置づけ（21条1項の保障か「精神に照らし尊重に値する」か）","外務省秘密文書漏洩事件","憲法改正の限界","憲法制定権力と憲法改正権","主権の概念"],"articles":[21,96],"hanrei":[],"classified":true},{"id":"dos-2016-tennyu","univ":"同志社","year":2016,"term":"転入学","course":"法学既修者2年次に転入学の場合（Cコース）","mondai":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/questions/\r\n2016tennyu_kenpou_bc.pdf","kaisetsu":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/kaisetsu/2016tennyu_kenpouk_bc.pdf","kaitou":null,"kaisetsuLabel":"解説","embed":{"mondai":true,"kaisetsu":true,"kaitou":false},"embedWhy":{"mondai":null,"kaisetsu":null,"kaitou":null},"basis":"解説","units":["精神的自由/表現の自由","総論/憲法の意義・最高法規性"],"topics":["取材の自由の憲法上の位置づけ（21条1項の保障か「精神に照らし尊重に値する」か）","外務省秘密文書漏洩事件","憲法改正の限界","憲法制定権力と憲法改正権","主権の概念"],"articles":[21,96],"hanrei":[],"classified":true},{"id":"dos-2015-tennyu-a","univ":"同志社","year":2015,"term":"転入学","course":"法学未修者2年次に転入学の場合（Aコース）","mondai":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/questions/\r\n2015tennyu_kenpou_a.pdf","kaisetsu":null,"kaitou":null,"kaisetsuLabel":"解説","embed":{"mondai":true,"kaisetsu":false,"kaitou":false},"embedWhy":{"mondai":null,"kaisetsu":null,"kaitou":null},"basis":"問題","units":[],"topics":[],"articles":[],"hanrei":[],"classified":false},{"id":"dos-2015-tennyu-c","univ":"同志社","year":2015,"term":"転入学","course":"法学既修者2年次に転入学の場合（Cコース）","mondai":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/questions/\r\n2015tennyu_kenpou_c.pdf","kaisetsu":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/kaisetsu/2015tennyu_kenpouk_c.pdf","kaitou":null,"kaisetsuLabel":"解説","embed":{"mondai":true,"kaisetsu":true,"kaitou":false},"embedWhy":{"mondai":null,"kaisetsu":null,"kaitou":null},"basis":"解説","units":["包括的基本権・平等/法の下の平等","人権総論/人権の享有主体"],"topics":["国籍法12条による区別の憲法適合性（14条1項）","国籍法3条1項違憲判決との異同","婚外子と婚内子の取扱い","13条を根拠とする国籍保持権の主張","新しい人権の司法的承認の要件（明確性・特定性・独自性・補充性）"],"articles":[13,14],"hanrei":["最大決平成25年9月4日","最大判平成20年6月4日","最大判平成17年9月14日","最判平成27年3月10日"],"classified":true},{"id":"dos-2014-tennyu","univ":"同志社","year":2014,"term":"転入学","course":"法学未修者2年次に転入学の場合","mondai":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/questions/2014tennyu_kenpou.pdf","kaisetsu":null,"kaitou":null,"kaisetsuLabel":"解説","embed":{"mondai":true,"kaisetsu":false,"kaitou":false},"embedWhy":{"mondai":null,"kaisetsu":null,"kaitou":null},"basis":"問題","units":[],"topics":[],"articles":[],"hanrei":[],"classified":false},{"id":"dos-2013-tennyu","univ":"同志社","year":2013,"term":"転入学","course":"転入学試験（法学未修者2年次に転入学の場合）","mondai":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/questions/2013_kenpou.pdf","kaisetsu":null,"kaitou":null,"kaisetsuLabel":"解説","embed":{"mondai":true,"kaisetsu":false,"kaitou":false},"embedWhy":{"mondai":null,"kaisetsu":null,"kaitou":null},"basis":"問題","units":[],"topics":[],"articles":[],"hanrei":[],"classified":false},{"id":"dos-2010-zenki","univ":"同志社","year":2010,"term":"前期","course":"法学既修者","mondai":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/questions/2010_kenpou.pdf","kaisetsu":null,"kaitou":null,"kaisetsuLabel":"解説","embed":{"mondai":true,"kaisetsu":false,"kaitou":false},"embedWhy":{"mondai":null,"kaisetsu":null,"kaitou":null},"basis":"問題","units":[],"topics":[],"articles":[],"hanrei":[],"classified":false},{"id":"dos-2009-zenki","univ":"同志社","year":2009,"term":"前期","course":"法学既修者","mondai":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/questions/2009_kenpou.pdf","kaisetsu":null,"kaitou":null,"kaisetsuLabel":"解説","embed":{"mondai":true,"kaisetsu":false,"kaitou":false},"embedWhy":{"mondai":null,"kaisetsu":null,"kaitou":null},"basis":"問題","units":[],"topics":[],"articles":[],"hanrei":[],"classified":false},{"id":"dos-2008-zenki","univ":"同志社","year":2008,"term":"前期","course":"法学既修者","mondai":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/questions/2008_kenpou.pdf","kaisetsu":null,"kaitou":null,"kaisetsuLabel":"解説","embed":{"mondai":true,"kaisetsu":false,"kaitou":false},"embedWhy":{"mondai":null,"kaisetsu":null,"kaitou":null},"basis":"問題","units":[],"topics":[],"articles":[],"hanrei":[],"classified":false},{"id":"dos-2007-zenki","univ":"同志社","year":2007,"term":"前期","course":"法学既修者","mondai":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/questions/2007_kenpou.pdf","kaisetsu":null,"kaitou":null,"kaisetsuLabel":"解説","embed":{"mondai":true,"kaisetsu":false,"kaitou":false},"embedWhy":{"mondai":null,"kaisetsu":null,"kaitou":null},"basis":"問題","units":[],"topics":[],"articles":[],"hanrei":[],"classified":false},{"id":"dos-2006-zenki","univ":"同志社","year":2006,"term":"前期","course":"法学既修者","mondai":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/questions/2006_kenpou.pdf","kaisetsu":null,"kaitou":null,"kaisetsuLabel":"解説","embed":{"mondai":true,"kaisetsu":false,"kaitou":false},"embedWhy":{"mondai":null,"kaisetsu":null,"kaitou":null},"basis":"問題","units":[],"topics":[],"articles":[],"hanrei":[],"classified":false},{"id":"dos-2005-zenki","univ":"同志社","year":2005,"term":"前期","course":"法学既修者","mondai":"https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/questions/2005_kenpou.pdf","kaisetsu":null,"kaitou":null,"kaisetsuLabel":"解説","embed":{"mondai":true,"kaisetsu":false,"kaitou":false},"embedWhy":{"mondai":null,"kaisetsu":null,"kaitou":null},"basis":"問題","units":[],"topics":[],"articles":[],"hanrei":[],"classified":false}]}</script>
+<script>
+(function(){
+"use strict";
+
+const UNIV_PAGE = {
+  "同志社":"https://law-school.doshisha.ac.jp/entrance_ex/question/",
+  "立命館":"https://www.ritsumei.ac.jp/lawschool/admission/past.html/",
+  "関学":"https://www.kwansei.ac.jp/lawschool/admissions/kakomon/",
+  "慶應":"https://www.ls.keio.ac.jp/nyushi/examination.html",
+  "中央":"https://www.chuo-u.ac.jp/academics/pro_graduateschool/law/orientation/selection/past/"
+};
+const UNIV_FULL = {
+  "同志社":"同志社大学法科大学院",
+  "立命館":"立命館大学法科大学院",
+  "関学":"関西学院大学法科大学院",
+  "慶應":"慶應義塾大学法科大学院",
+  "中央":"中央大学法科大学院"
+};
+const UNIV_LIST = ["同志社","立命館","関学","慶應","中央"];
+const LS = "kenpo-kakomon:v1";
+const ROPPO = "https://natsunooda.github.io/roppo-viewer/#kenpo/";   // 六法ビューア（同じ作者の別アプリ）
+
+let DATA = {items:[], taxonomy:[]};
+let state = {unit:null, univ:new Set(), q:"", sel:null, pdf:"mondai"};
+let done = {};
+
+/* ---------- 保存（この端末のブラウザにだけ残る） ---------- */
+function loadStore(){
+  try{
+    const s = JSON.parse(localStorage.getItem(LS) || "{}");
+    done = s.done || {};
+    if(s.unit !== undefined) state.unit = s.unit;
+    if(Array.isArray(s.univ)) state.univ = new Set(s.univ);
+  }catch(e){ done = {}; }
+}
+function saveStore(){
+  try{
+    localStorage.setItem(LS, JSON.stringify({
+      done, unit:state.unit, univ:[...state.univ]
+    }));
+  }catch(e){}
+}
+
+/* ---------- 絞り込み ---------- */
+function matches(it){
+  if(state.univ.size && !state.univ.has(it.univ)) return false;
+  if(state.unit === "__uncls__"){ if(it.classified) return false; }
+  else if(state.unit){
+    const hit = it.units.some(u => u === state.unit || u.split("/")[0] === state.unit);
+    if(!hit) return false;
+  }
+  const q = state.q.trim();
+  if(q){
+    const num = /^\d{1,4}$/.test(q);
+    const hay = [it.univ, UNIV_FULL[it.univ], it.year + "年度", it.term, it.course,
+                 ...it.units, ...it.topics, ...it.hanrei].join(" ");
+    if(num){
+      if(!it.articles.includes(+q) && hay.indexOf(q) < 0) return false;
+    }else if(hay.indexOf(q) < 0) return false;
+  }
+  return true;
+}
+const filtered = () => DATA.items.filter(matches);
+
+/* ---------- 単元ツリー ---------- */
+function renderUnits(){
+  const nav = document.getElementById("units");
+  const vis = DATA.items.filter(it => {
+    if(state.univ.size && !state.univ.has(it.univ)) return false;
+    return true;
+  });
+  const cnt = {};
+  let uncls = 0;
+  for(const it of vis){
+    if(!it.classified){ uncls++; continue; }
+    for(const u of it.units){
+      cnt[u] = (cnt[u]||0)+1;
+      const t = u.split("/")[0];
+      cnt[t] = (cnt[t]||0)+1;
+    }
+  }
+  const parts = [];
+  parts.push(btnHTML(null, "すべての単元", vis.length, state.unit===null, "top"));
+  for(const g of DATA.taxonomy){
+    const n = cnt[g.name]||0;
+    parts.push('<div class="grp">');
+    if(g.subs.length){
+      parts.push('<h3>'+esc(g.name)+'</h3>');
+      for(const s of g.subs){
+        parts.push(btnHTML(s.key, s.name, cnt[s.key]||0, state.unit===s.key, ""));
+      }
+    }else{
+      parts.push(btnHTML(g.name, g.name, n, state.unit===g.name, "top"));
+    }
+    parts.push('</div>');
+  }
+  if(uncls){
+    parts.push('<div class="grp"><h3>そのほか</h3>');
+    parts.push(btnHTML("__uncls__", "単元未判定", uncls, state.unit==="__uncls__", ""));
+    parts.push('</div>');
+  }
+  nav.innerHTML = parts.join("");
+  nav.querySelectorAll(".unit").forEach(b => b.onclick = () => {
+    state.unit = b.dataset.u === "" ? null : b.dataset.u;
+    document.body.classList.remove("nav");
+    saveStore(); renderUnits(); renderList();
+  });
+}
+function btnHTML(key, label, n, on, cls){
+  return '<button class="unit '+cls+(on?" on":"")+(n?"":" zero")+'" data-u="'+esc(key===null?"":key)+'">'
+       + '<span>'+esc(label)+'</span><span class="n">'+n+'</span></button>';
+}
+
+/* ---------- 一覧 ---------- */
+function renderList(){
+  const box = document.getElementById("list");
+  const items = filtered();
+  document.getElementById("count").textContent = items.length + " 件 / 全 " + DATA.items.length + " 件";
+  if(!items.length){
+    box.innerHTML = '<p class="empty">該当する過去問がありません。<br>絞り込みや検索語を見直してください。</p>';
+    return;
+  }
+  box.innerHTML = items.map(it => {
+    const tp = it.classified ? it.topics.slice(0,3).join("／") : "解説が公開されていないため単元未判定";
+    return '<div class="card'+(state.sel===it.id?" on":"")+'" data-id="'+it.id+'">'
+      + '<div class="ttl">'+esc(it.univ)+' '+it.year+'年度 '+esc(it.term)
+      + (done[it.id]?' <span class="badge done">解いた</span>':'')
+      + '</div><div class="tp">'+esc(tp)+'</div></div>';
+  }).join("");
+  box.querySelectorAll(".card").forEach(c => c.onclick = () => select(c.dataset.id));
+}
+
+/* ---------- 詳細 ---------- */
+function select(id){
+  state.sel = id; state.pdf = "mondai";
+  document.body.classList.add("open");
+  renderList(); renderDetail();
+  document.getElementById("detail").scrollTop = 0;
+}
+function renderDetail(){
+  const box = document.getElementById("detail");
+  const it = DATA.items.find(x => x.id === state.sel);
+  if(!it){
+    box.innerHTML = aboutHTML();
+    const b = document.getElementById("back");
+    if(b) b.onclick = () => document.body.classList.remove("open");
+    return;
+  }
+  const kaisetsuLabel = it.kaisetsuLabel || "解説";
+  const p = [];
+  p.push('<div class="row"><button class="btn backbtn" id="back">← 一覧</button>'
+    + '<label class="done"><input type="checkbox" id="doneChk"'+(done[it.id]?" checked":"")+'> 解いた</label></div>');
+  p.push('<h2>'+esc(it.univ)+' '+it.year+'年度 '+esc(it.term)
+    + '</h2>');
+  p.push('<div class="meta">'+esc(UNIV_FULL[it.univ])+'・'+esc(it.course)
+    + ' ／ <a href="'+esc(UNIV_PAGE[it.univ])+'" target="_blank" rel="noopener">大学の公開ページ</a></div>');
+
+  // 開くボタン
+  p.push('<div class="row">');
+  if(it.combined){
+    p.push(link(it.mondai, "問題・解説を開く", true));
+  }else{
+    p.push(link(it.mondai, "問題を開く", true));
+    p.push(link(it.kaisetsu, kaisetsuLabel + "を開く", false));
+  }
+  if(it.kaitou) p.push(link(it.kaitou, "解答用紙", false));
+  p.push('</div>');
+
+  if(it.combined){
+    p.push('<p class="note">この PDF には、問題と解説（解答例・出題の意図・講評）の両方が入っています。</p>');
+  }else if(it.mondaiNote){
+    p.push('<p class="note">問題 PDF は'+esc(it.mondaiNote)+'。</p>');
+  }
+  if(it.kaisetsu && it.kaisetsuNote) p.push('<p class="note">'+esc(kaisetsuLabel)+' PDF は'+esc(it.kaisetsuNote)+'。</p>');
+  if(!it.kaisetsu && !it.combined) p.push('<p class="note">この回は'+esc(kaisetsuLabel)+'が公開されていません。</p>');
+
+  if(it.classified){
+    p.push('<section class="blk"><h4>単元</h4><div class="tagrow">'
+      + it.units.map(u => '<button class="tag" data-u="'+esc(u)+'">'+esc(u.replace("/","／"))+'</button>').join("")
+      + '</div></section>');
+    p.push('<section class="blk"><h4>論点</h4><ul class="topics">'
+      + it.topics.map(t => '<li>'+esc(t)+'</li>').join("") + '</ul></section>');
+    if(it.articles.length){
+      p.push('<section class="blk"><h4>引用条文（憲法）</h4><div class="tagrow">'
+        + it.articles.map(a => '<a class="tag" target="_blank" rel="noopener" href="'
+            + ROPPO + encodeURIComponent(String(a)) + '" title="六法ビューアで憲法'+a+'条を開く">'
+            + a + '条 ↗</a>').join("")
+        + '</div><p class="note">条文をおすと六法ビューアで本文が読めます。'
+        + '上の検索欄に条文番号を入れると、その条文が出た回だけが並びます。</p></section>');
+    }
+    if(it.hanrei.length){
+      p.push('<section class="blk"><h4>解説が挙げる判例</h4><div class="tagrow">'
+        + it.hanrei.map(h => '<span class="tag plain">'+esc(h)+'</span>').join("")
+        + '</div></section>');
+    }
+    if(it.basis === '問題'){
+      p.push('<p class="note">この回は'+esc(kaisetsuLabel)+'が公開されていないため、'
+        + '単元・論点・条文は<b>問題文から読み取って</b>整理したものです。</p>');
+    }else{
+      const srcName = it.combined ? '解説' : kaisetsuLabel;
+      p.push('<p class="note">単元・論点・条文は、大学が公開している'+esc(srcName)
+        + 'の本文から拾って整理したものです。本文は上のボタンから大学の PDF を開いてください。</p>');
+    }
+  }else{
+    p.push('<p class="note">この回は'+esc(kaisetsuLabel)+'が公開されておらず、問題 PDF も文字情報のない画像のため、'
+      + '単元を判定していません。問題は上のボタンから開けます。</p>');
+  }
+
+  // PDF プレビュー（埋め込めるものだけ表示し、残りは理由を書く）
+  const all = [["mondai", it.combined ? "問題・解説" : "問題"],
+               ["kaisetsu", kaisetsuLabel], ["kaitou","解答用紙"]]
+    .filter(([k]) => it[k]);
+  const tabs = all.filter(([k]) => it.embed[k]);
+  if(all.length){
+    p.push('<section class="blk"><h4>そのまま読む</h4>');
+    if(tabs.length){
+      p.push('<div id="tabsPdf" class="chips">'
+        + tabs.map(([k,l]) => '<button data-pdf="'+k+'"'+(state.pdf===k?' class="on"':'')+'>'+esc(l)+'</button>').join("")
+        + '</div>');
+      const cur = tabs.some(([k]) => k === state.pdf) ? state.pdf : tabs[0][0];
+      p.push('<iframe id="viewer" src="'+esc(it[cur])+'" title="PDF"></iframe>');
+    }
+    const blocked = all.filter(([k]) => !it.embed[k]);
+    if(blocked.length){
+      const reasons = {
+        xfo: esc(UNIV_FULL[it.univ]) + 'のサーバーがページ内への埋め込みを許可していないため',
+        http: '大学がこの PDF を http（暗号化なし）で公開しており、このページには読み込めないため',
+        unreachable: '大学のサーバーに届かなかったため'
+      };
+      const why = reasons[it.embedWhy[blocked[0][0]]] || '大学側の設定のため';
+      p.push('<p class="note">' + blocked.map(([, l]) => esc(l)).join('・')
+        + ' はここには表示できません（' + why + '）。上のボタンから新しいタブで開いてください。</p>');
+    }
+    p.push('</section>');
+  }
+
+  box.innerHTML = p.join("");
+  const back = document.getElementById("back");
+  if(back) back.onclick = () => document.body.classList.remove("open");
+  const chk = document.getElementById("doneChk");
+  if(chk) chk.onchange = () => {
+    if(chk.checked) done[it.id] = 1; else delete done[it.id];
+    saveStore(); renderList();
+  };
+  box.querySelectorAll(".tag[data-u]").forEach(b => b.onclick = () => {
+    state.unit = b.dataset.u; state.q = ""; document.getElementById("q").value = "";
+    document.body.classList.remove("open");
+    saveStore(); renderUnits(); renderList();
+  });
+  box.querySelectorAll("#tabsPdf button").forEach(b => b.onclick = () => {
+    state.pdf = b.dataset.pdf; renderDetail();
+  });
+}
+function aboutHTML(){
+  const n = DATA.items.length, c = DATA.items.filter(i => i.classified).length;
+  return '<section class="blk about">'
+    + '<div class="row"><button class="btn backbtn" id="back">← 一覧</button></div>'
+    + '<h2 style="margin-bottom:10px">憲法過去問帳</h2>'
+    + '<p>法科大学院が公開している<b>既修者入試（憲法）の過去問</b>を、憲法の単元ごとに引けるようにした索引です。'
+    + '左の単元をおすと、その単元が出題された回だけが並びます。</p>'
+    + '<h4 style="margin-top:18px">引き方</h4>'
+    + '<ul class="topics">'
+    + '<li><b>単元から</b> — 左の一覧（裁判所・当事者・訴えの提起・審理・証拠・訴訟の終了・複数請求・上訴・特別手続）</li>'
+    + '<li><b>条文から</b> — 上の検索欄に <code>114</code> のように条番号を入れる</li>'
+    + '<li><b>論点・判例から</b> — 「既判力」「最判平成3年12月17日」などで検索</li>'
+    + '</ul>'
+    + '<h4 style="margin-top:18px">収録</h4>'
+    + '<p>' + UNIV_LIST.filter(u => DATA.items.some(i => i.univ === u)).map(u =>
+        '<a href="'+esc(UNIV_PAGE[u])+'" target="_blank" rel="noopener">'+esc(UNIV_FULL[u])+'</a>').join("・")
+    + ' の計 ' + n + ' 回（2005〜2027年度）。うち ' + c + ' 回に単元・論点・条文・判例をつけています。</p>'
+    + '<p class="note">立命館は憲法と行政法を合わせた「<b>公法</b>」1冊で出題しています'
+    + '（講評に憲法の節があるのは2018〜2021年度）。'
+    + '同志社の2016年度後期と同年度の転入学試験は<b>同じ問題・同じ解説</b>です。</p>'
+    + '<p class="note">問題・解説の PDF は、このサイトには置いていません。'
+    + 'ボタンをおすと各大学の公式ページの PDF をそのまま開きます。'
+    + '単元・論点の整理は、大学が公開している解説・入試講評・出題趣旨の本文にもとづく私的なもので、大学の公式見解ではありません。</p>'
+    + '</section>';
+}
+function link(url, label, primary){
+  if(!url) return '<span class="btn" aria-disabled="true">'+esc(label)+'</span>';
+  return '<a class="btn'+(primary?" primary":"")+'" href="'+esc(url)+'" target="_blank" rel="noopener">'
+    + esc(label)+' ↗</a>';
+}
+
+/* ---------- 画面上部の絞り込み ---------- */
+function renderChips(){
+  const u = document.getElementById("univChips");
+  u.innerHTML = UNIV_LIST.filter(n => DATA.items.some(i => i.univ === n)).map(n =>
+    '<button data-n="'+n+'"'+(state.univ.has(n)?' class="on"':'')+'>'+n+'</button>').join("");
+  u.querySelectorAll("button").forEach(b => b.onclick = () => {
+    const n = b.dataset.n;
+    if(state.univ.has(n)) state.univ.delete(n); else state.univ.add(n);
+    saveStore(); renderChips(); renderUnits(); renderList();
+  });
+}
+
+/* ---------- 起動 ---------- */
+function esc(s){
+  return String(s==null?"":s).replace(/[&<>"']/g, c =>
+    ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+function boot(d){
+  DATA = d;
+  for(const it of DATA.items){
+    it.units = it.units || []; it.topics = it.topics || [];
+    it.articles = it.articles || []; it.hanrei = it.hanrei || [];
+    // 埋め込み可否は tools/fetch_sources.py が実際のヘッダーを見て決め、data に入れてある
+    it.embed = it.embed || {};
+    it.embedWhy = it.embedWhy || {};
+  }
+  loadStore();
+  if(state.unit && state.unit !== "__uncls__"){
+    const keys = new Set();
+    for(const g of DATA.taxonomy){ keys.add(g.name); for(const s of g.subs) keys.add(s.key); }
+    if(!keys.has(state.unit)) state.unit = null;
+  }
+  renderChips(); renderUnits(); renderList(); renderDetail();
+  document.getElementById("q").oninput = e => {
+    state.q = e.target.value; renderList();
+  };
+  document.getElementById("aboutBtn").onclick = () => {
+    state.sel = null; document.body.classList.add("open");
+    renderList(); renderDetail(); document.getElementById("detail").scrollTop = 0;
+  };
+  document.getElementById("navbtn").onclick = () => document.body.classList.toggle("nav");
+  document.getElementById("scrim").onclick = () => document.body.classList.remove("nav");
+}
+
+const inline = JSON.parse(document.getElementById("kakomon-data").textContent);
+if(inline.items && inline.items.length){
+  boot(inline);
+}else{
+  fetch("data/kakomon.json").then(r => r.json()).then(boot).catch(() => {
+    document.getElementById("list").innerHTML =
+      '<p class="empty">データを読み込めませんでした。<br>'
+      + 'リポジトリ直下の <code>開く.command</code> から起動してください。</p>';
+  });
+}
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,220 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""単元判定の下ごしらえ。
+
+data/sources.json の PDF を取ってきてテキスト化し、対象科目の節だけ切り出して、
+引用条文・判例・論点文を一覧にする。この出力を見ながら tools/classify.py を書く。
+
+    python3 tools/digest.py            # 全件
+    python3 tools/digest.py dos-2026-zenki kei-2025-honshi   # 指定した回だけ
+
+PDF とテキストは .cache/ に置く（git 管理外）。リポジトリに PDF は入れない。
+"""
+import json, re, subprocess, sys, urllib.request, unicodedata as ud
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT / 'tools'))
+CACHE = ROOT / '.cache'
+UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)'
+
+import classify as C
+SUBJECT = C.SUBJECT_NAME            # 例: 民事訴訟法
+
+
+def fetch(url, path):
+    if path.exists() and path.stat().st_size > 0:
+        return path
+    path.parent.mkdir(parents=True, exist_ok=True)
+    req = urllib.request.Request(url, headers={'User-Agent': UA})
+    with urllib.request.urlopen(req, timeout=90) as r:
+        path.write_bytes(r.read())
+    return path
+
+
+def to_text(pdf, txt):
+    txt.parent.mkdir(parents=True, exist_ok=True)
+    if not txt.exists() or txt.stat().st_size == 0:
+        subprocess.run(['pdftotext', '-enc', 'UTF-8', str(pdf), str(txt)],
+                       check=False, capture_output=True)
+    return txt.read_text(encoding='utf-8', errors='replace') if txt.exists() else ''
+
+
+def norm(t):
+    t = ud.normalize('NFKC', t.replace('⺠', '民'))
+    t = re.sub(r'[ \t　]+', ' ', t)
+    return re.sub(r'\n{3,}', '\n\n', t)
+
+
+def jp_len(t):
+    return len(re.findall(r'[ぁ-んァ-ヶ一-龥]', t))
+
+
+SUBJECTS_ALL = ['憲法', '民法', '刑法', '商法', '民事訴訟法', '刑事訴訟法', '行政法', '小論文']
+
+
+def section(t, univ):
+    """合冊 PDF から対象科目の節だけ取り出す。単独 PDF はそのまま返す。"""
+    others = [s for s in SUBJECTS_ALL if s != SUBJECT]
+    # 慶應・中央の出題趣旨は【科目】、慶應の問題は 科目〔問題〕
+    flat, idx = [], []
+    for i, ch in enumerate(t):
+        if not ch.isspace():
+            flat.append(ch); idx.append(i)
+    flat = ''.join(flat)
+    ms = [m for m in re.finditer(r'(' + '|'.join(SUBJECTS_ALL) + r')〔問題〕', flat)]
+    for j, m in enumerate(ms):
+        if m.group(1) == SUBJECT:
+            e = idx[ms[j + 1].start()] if j + 1 < len(ms) else len(t)
+            return t[idx[m.start()]:e]
+    m = re.search(r'【\s*' + SUBJECT + r'\s*】', t)
+    if m:
+        nxt = re.search(r'【\s*(' + '|'.join(others) + r')\s*】', t[m.end():])
+        return t[m.start(): m.end() + (nxt.start() if nxt else len(t))]
+    # 立命館の入試講評は「民 法」のように科目名だけの行が見出し。
+    # 「公 法 (憲 法)」「訴訟法オプション試験(民事訴訟法)」の形もある。
+    head = re.compile(r'^\s*[<＜]?\s*('
+                      r'公\s*法\s*\([^)]*\)'
+                      r'|訴\s*訟\s*法\s*オ\s*プ\s*シ\s*ョ\s*ン\s*試\s*験\s*\([^)]*\)'
+                      r'|' + '|'.join(r'\s*'.join(x) for x in SUBJECTS_ALL) + r')\s*[>＞]?\s*$')
+    marks, pos = [], 0
+    for line in t.split('\n'):
+        mm = head.match(line)
+        if mm:
+            name = re.sub(r'\s', '', mm.group(1))
+            km = re.fullmatch(r'(?:公法|訴訟法オプション試験)\(([^)]+)\)', name)
+            if km:
+                name = km.group(1)
+            marks.append((pos, name, pos + len(line) + 1))
+        pos += len(line) + 1
+    if marks and any(n == SUBJECT for _, n, _ in marks):
+        parts = []
+        for i, (st, name, after) in enumerate(marks):
+            if name != SUBJECT:
+                continue
+            end = marks[i + 1][0] if i + 1 < len(marks) else len(t)
+            seg = t[after:end].strip()
+            if jp_len(seg) > 50:
+                parts.append(seg)
+        if parts:
+            return '\n\n'.join(parts)
+    return t          # 単独 PDF（同志社など）
+
+
+ART = {}
+
+# 「風営法2条1項1号」「宗教法人法81条」のように、法令名＋条番号は対象科目の条文ではない。
+# 法令名を列挙しきるのは無理なので、「漢字・カタカナの連なり＋法/法律/条例/規則/令/典範」で
+# 終わる語の直後に来る条番号をまとめて落とす。対象科目（憲法）で終わる語だけは残す。
+# 憲法の問題文・解説では、審査対象の法令を「法」「本件条例」などと略して引く。
+# 裸の「法NNN条」「条例NNN条」も他法令として落とす（憲法は必ず「憲法NNN条」と書かれる）。
+OTHER_LAW = re.compile(r'(?:[一-龥ァ-ヶー]{1,16}?(?:法律|法|条例|規則|令|典範)|法|条例|規則)'
+                       r'(?:第)?(\d{1,4})条(?:の\d{1,2})?')
+# 法令名で終わらない略称など、上で拾えないもの
+OTHER_NAMED = re.compile(r'(?:条約|議院規則|皇室典範|同条約)(?:第)?\d{1,4}条(?:の\d{1,2})?')
+
+
+def articles(t):
+    """条文番号を数える。空白を全部落としてから拾い、他法令の条文はマスクする。
+
+    空白を残すと「風 俗 営 業 等 の…法律(以下「風営法」という。)2 条」のように
+    法令名が字間アキや行またぎで割れた箇所でマスクが外れ、他法令の条文を憲法の
+    ものとして数えてしまう（字間アキで割れた数字をつなぐ目的も兼ねる）。
+    """
+    t = re.sub(r'\s+', '', t)
+
+    def drop(m):
+        whole = m.group(0)
+        name = whole[:whole.index(m.group(1))]
+        return whole if name.rstrip('第').endswith(SUBJECT) else '〇'
+
+    t = OTHER_NAMED.sub('〇', t)
+    t = OTHER_LAW.sub(drop, t)
+    out = {}
+    for m in re.finditer(r'(?<![0-9])(\d{1,4})\s*条', t):
+        n = int(m.group(1))
+        if 1 <= n <= C.ART_MAX:
+            out[n] = out.get(n, 0) + 1
+    return out
+
+
+ERA = {'明': '明治', '大': '大正', '昭': '昭和', '平': '平成', '令': '令和',
+       '明治': '明治', '大正': '大正', '昭和': '昭和', '平成': '平成', '令和': '令和'}
+# 「最二小判」のような小法廷の書き方もある（「最判」にそろえる）
+_COURT = (r'最大判|最大決|最[一二三]小判|最[一二三]小決|最判|最決|'
+          r'大連判|大判|大決|高判|高決|地判|地決')
+_SHONO = {'判': '最判', '決': '最決'}
+# 「最判平成18年11月7日」と「最大判平 29・3・15」の両方の書き方を拾う
+HANREI_A = re.compile(r'(' + _COURT + r')\s*((?:明治|大正|昭和|平成|令和))?\s*(\d{1,2}|元)\s*年\s*(\d{1,2})\s*月\s*(\d{1,2})\s*日')
+HANREI_B = re.compile(r'(' + _COURT + r')\s*(明治|大正|昭和|平成|令和|明|大|昭|平|令)\s*(\d{1,2}|元)\s*[・.]\s*(\d{1,2})\s*[・.]\s*(\d{1,2})')
+
+
+def hanrei(t):
+    """判例の表記を「最決昭和59年2月29日」の形にそろえて並べる。
+
+    空白を落としてから拾う。「(最/大判昭和 45・6・24」のように裁判所名が行を
+    またぐことがあり、そのままだと「最大判」を「大判」と読み違える。"""
+    t = re.sub(r'\s+', '', t)
+    out, last_era = [], None
+    for m in sorted(list(HANREI_A.finditer(t)) + list(HANREI_B.finditer(t)),
+                    key=lambda m: m.start()):
+        court, era, y, mo, d = m.groups()
+        era = ERA.get(era) if era else last_era
+        if not era:
+            continue
+        last_era = era
+        if re.fullmatch(r'最[一二三]小[判決]', court):
+            court = _SHONO[court[-1]]
+        h = f'{court}{era}{y}年{int(mo)}月{int(d)}日'
+        if h not in out:
+            out.append(h)
+    return out
+
+
+CUE = re.compile(r'[^。\n]{6,170}?(?:問題となる|問題である|が問われ|を問うもの|を問う問題|問うている|'
+                 r'出題意図|出題趣旨|検討を求め|論ずべき|論じる必要|理解を問う|ポイントとなる|'
+                 r'が争点|答えさせる|求められる)[^。\n]{0,60}。')
+
+
+def main():
+    src = json.load(open(ROOT / 'data' / 'sources.json', encoding='utf-8'))
+    want = set(sys.argv[1:])
+    for it in src['items']:
+        if want and it['id'] not in want:
+            continue
+        # 解説を優先し、それが画像 PDF なら問題文で代用する
+        t, kind = '', None
+        for k in ('kaisetsu', 'mondai'):
+            if not it.get(k): continue
+            try:
+                pdf = fetch(it[k], CACHE / 'pdf' / f"{it['id']}_{k}.pdf")
+            except Exception as e:
+                print(f"===== {it['id']}  [{k} 取得失敗 {e}]"); continue
+            cand = norm(to_text(pdf, CACHE / 'txt' / f"{it['id']}_{k}.txt"))
+            if jp_len(cand) >= 100:
+                t, kind = cand, k
+                break
+        if not kind:
+            print(f"===== {it['id']}  [画像 PDF のみ・本文を取り出せない]")
+            continue
+        sec = section(t, it['univ'])
+        arts = articles(sec)
+        han, cues = hanrei(sec), []
+        for m in CUE.finditer(sec):
+            c = re.sub(r'\s+', '', m.group(0))
+            if c not in cues: cues.append(c)
+        units = {}
+        for n, c in arts.items():
+            u = C.unit_of(n)
+            if u: units[u] = units.get(u, 0) + c
+        print(f"===== {it['id']}  [{kind}] {jp_len(sec)}字  {it['univ']} {it['year']} {it['term']}")
+        print(f"  冒頭: {re.sub(chr(10), '/', sec[:110])}")
+        print(f"  単元候補: {sorted(units.items(), key=lambda x: -x[1])[:8]}")
+        print(f"  条文: {[a for a, _ in sorted(arts.items(), key=lambda x: -x[1])][:16]}")
+        if han: print(f"  判例: {han[:8]}")
+        for c in cues[:6]: print(f"  ◆ {c[:150]}")
+        print()
+
+
+if __name__ == '__main__':
+    main()
