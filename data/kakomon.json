@@ -1,6 +1,7 @@
 {
  "generated": true,
  "sources": {
+  "京大": "https://lawschool.law.kyoto-u.ac.jp/nyushi/mondai/",
   "同志社": "https://law-school.doshisha.ac.jp/entrance_ex/question/",
   "立命館": "https://www.ritsumei.ac.jp/lawschool/admission/past.html/",
   "慶應": "https://www.ls.keio.ac.jp/nyushi/examination.html",
@@ -31,7 +32,7 @@
   },
   {
    "name": "人権総論",
-   "count": 4,
+   "count": 3,
    "subs": [
     {
      "name": "人権の享有主体",
@@ -46,18 +47,18 @@
     {
      "name": "公共の福祉・審査基準",
      "key": "人権総論/公共の福祉・審査基準",
-     "count": 1
+     "count": 0
     }
    ]
   },
   {
    "name": "包括的基本権・平等",
-   "count": 13,
+   "count": 14,
    "subs": [
     {
      "name": "幸福追求権・プライバシー",
      "key": "包括的基本権・平等/幸福追求権・プライバシー",
-     "count": 7
+     "count": 8
     },
     {
      "name": "法の下の平等",
@@ -68,12 +69,12 @@
   },
   {
    "name": "精神的自由",
-   "count": 46,
+   "count": 51,
    "subs": [
     {
      "name": "思想・良心の自由",
      "key": "精神的自由/思想・良心の自由",
-     "count": 7
+     "count": 6
     },
     {
      "name": "信教の自由・政教分離",
@@ -83,12 +84,12 @@
     {
      "name": "表現の自由",
      "key": "精神的自由/表現の自由",
-     "count": 25
+     "count": 28
     },
     {
      "name": "集会・結社の自由",
      "key": "精神的自由/集会・結社の自由",
-     "count": 8
+     "count": 11
     },
     {
      "name": "学問の自由・大学の自治",
@@ -99,12 +100,12 @@
   },
   {
    "name": "経済的自由・人身の自由",
-   "count": 11,
+   "count": 12,
    "subs": [
     {
      "name": "職業選択の自由",
      "key": "経済的自由・人身の自由/職業選択の自由",
-     "count": 5
+     "count": 6
     },
     {
      "name": "財産権",
@@ -125,7 +126,7 @@
   },
   {
    "name": "社会権・参政権",
-   "count": 9,
+   "count": 8,
    "subs": [
     {
      "name": "生存権",
@@ -145,7 +146,7 @@
     {
      "name": "参政権・選挙制度",
      "key": "社会権・参政権/参政権・選挙制度",
-     "count": 8
+     "count": 7
     },
     {
      "name": "国務請求権・裁判を受ける権利",
@@ -156,12 +157,12 @@
   },
   {
    "name": "統治",
-   "count": 49,
+   "count": 54,
    "subs": [
     {
      "name": "国会",
      "key": "統治/国会",
-     "count": 14
+     "count": 15
     },
     {
      "name": "内閣・行政",
@@ -171,12 +172,12 @@
     {
      "name": "裁判所・司法権",
      "key": "統治/裁判所・司法権",
-     "count": 12
+     "count": 14
     },
     {
      "name": "違憲審査制",
      "key": "統治/違憲審査制",
-     "count": 9
+     "count": 10
     },
     {
      "name": "財政",
@@ -186,7 +187,7 @@
     {
      "name": "地方自治",
      "key": "統治/地方自治",
-     "count": 4
+     "count": 5
     }
    ]
   }
@@ -237,6 +238,95 @@
     "最大判昭和51年4月14日",
     "最大判昭和58年6月22日"
    ],
+   "classified": true
+  },
+  {
+   "id": "kgu-2027-a",
+   "univ": "関学",
+   "year": 2027,
+   "term": "A日程",
+   "course": "一般入試（法学既修者）",
+   "mondai": "https://www.kwansei.ac.jp/lawschool/assets/2027A_kenpo.pdf",
+   "kaisetsu": null,
+   "kaitou": null,
+   "kaisetsuLabel": "解説",
+   "combined": true,
+   "mondaiNote": "問題と解説（解答例・出題の意図・講評）が1つにまとまったもの",
+   "embed": {
+    "mondai": false,
+    "kaisetsu": false,
+    "kaitou": false
+   },
+   "embedWhy": {
+    "mondai": "xfo",
+    "kaisetsu": null,
+    "kaitou": null
+   },
+   "basis": "解説",
+   "units": [
+    "統治/裁判所・司法権",
+    "精神的自由/表現の自由"
+   ],
+   "topics": [
+    "司法権の独立の二つの意味",
+    "拘置所長による新聞紙の閲覧禁止の合憲性",
+    "よど号ハイジャック記事抹消事件の法的構成と判断枠組み",
+    "刑事収容施設法の下で書籍の閲覧を禁止した処分の国家賠償法上の違法性"
+   ],
+   "articles": [
+    21,
+    76,
+    77,
+    78,
+    79,
+    80
+   ],
+   "hanrei": [
+    "最大判昭和58年6月22日",
+    "地判平成30年6月22日",
+    "最大判平成元年3月8日"
+   ],
+   "classified": true
+  },
+  {
+   "id": "kyo-2026-ronjutsu",
+   "univ": "京大",
+   "year": 2026,
+   "term": "論述式",
+   "course": "法学既修者",
+   "mondai": "https://lawschool.law.kyoto-u.ac.jp/cms/uploads/2026/03/mondai_8kenpo.pdf",
+   "kaisetsu": "https://lawschool.law.kyoto-u.ac.jp/cms/uploads/2026/03/shushikijyun_8kenpo.pdf",
+   "kaitou": null,
+   "kaisetsuLabel": "出題趣旨・採点基準",
+   "embed": {
+    "mondai": true,
+    "kaisetsu": true,
+    "kaitou": false
+   },
+   "embedWhy": {
+    "mondai": null,
+    "kaisetsu": null,
+    "kaitou": null
+   },
+   "basis": "解説",
+   "units": [
+    "精神的自由/表現の自由",
+    "精神的自由/集会・結社の自由",
+    "統治/内閣・行政"
+   ],
+   "topics": [
+    "公立学校を利用した個人演説会の開催を認めないことの合憲性",
+    "表現の自由・集会の自由（21条1項）",
+    "公立学校の講堂とパブリック・フォーラム",
+    "ヘイトスピーチであることが要保護性に与える影響",
+    "独立行政委員会の合憲性（65条）",
+    "個人情報保護委員会の独立性を正当化する理由"
+   ],
+   "articles": [
+    21,
+    65
+   ],
+   "hanrei": [],
    "classified": true
   },
   {
@@ -560,6 +650,46 @@
    "classified": true
   },
   {
+   "id": "kyo-2025-ronjutsu",
+   "univ": "京大",
+   "year": 2025,
+   "term": "論述式",
+   "course": "法学既修者",
+   "mondai": "https://lawschool.law.kyoto-u.ac.jp/cms/uploads/2025/01/mondai_7kenpo.pdf",
+   "kaisetsu": "https://lawschool.law.kyoto-u.ac.jp/cms/uploads/2025/01/shushikijyun_kenpo.pdf",
+   "kaitou": null,
+   "kaisetsuLabel": "出題趣旨・採点基準",
+   "embed": {
+    "mondai": true,
+    "kaisetsu": true,
+    "kaitou": false
+   },
+   "embedWhy": {
+    "mondai": null,
+    "kaisetsu": null,
+    "kaitou": null
+   },
+   "basis": "解説",
+   "units": [
+    "精神的自由/表現の自由",
+    "統治/地方自治",
+    "精神的自由/集会・結社の自由"
+   ],
+   "topics": [
+    "地方議会の公開と取材の自由",
+    "ドキュメンタリー制作のための取材に取材の自由が及ぶか",
+    "地方議会の公開の憲法上の位置づけ（客観法上の義務か個人の権利か）",
+    "政党に党内民主主義を求めることの可否",
+    "政党の自律性と結社の自由（21条）",
+    "トリーペルの四段階理論と政党交付金"
+   ],
+   "articles": [
+    21
+   ],
+   "hanrei": [],
+   "classified": true
+  },
+  {
    "id": "dos-2025-zenki",
    "univ": "同志社",
    "year": 2025,
@@ -873,6 +1003,49 @@
    "classified": true
   },
   {
+   "id": "kyo-2024-ronjutsu",
+   "univ": "京大",
+   "year": 2024,
+   "term": "論述式",
+   "course": "法学既修者",
+   "mondai": "https://lawschool.law.kyoto-u.ac.jp/cms/uploads/2024/01/mondai_6kenpo.pdf",
+   "kaisetsu": "https://lawschool.law.kyoto-u.ac.jp/cms/uploads/2024/01/shushikijyun_6kenpo.pdf",
+   "kaitou": null,
+   "kaisetsuLabel": "出題趣旨・採点基準",
+   "embed": {
+    "mondai": true,
+    "kaisetsu": true,
+    "kaitou": false
+   },
+   "embedWhy": {
+    "mondai": null,
+    "kaisetsu": null,
+    "kaitou": null
+   },
+   "basis": "解説",
+   "units": [
+    "経済的自由・人身の自由/職業選択の自由",
+    "包括的基本権・平等/幸福追求権・プライバシー",
+    "統治/裁判所・司法権",
+    "統治/国会"
+   ],
+   "topics": [
+    "性犯罪歴のある者の採用禁止と職業の自由",
+    "性犯罪歴のデータベース化とプライバシー権",
+    "司法権の範囲・限界と「法律上の争訟」",
+    "衆議院の解散と統治行為論",
+    "国会の臨時会召集要求（53条）と国会議員の権利・利益"
+   ],
+   "articles": [
+    22,
+    53
+   ],
+   "hanrei": [
+    "最大判昭和35年6月8日"
+   ],
+   "classified": true
+  },
+  {
    "id": "dos-2024-zenki",
    "univ": "同志社",
    "year": 2024,
@@ -1170,6 +1343,48 @@
    "classified": true
   },
   {
+   "id": "kyo-2023-ronjutsu",
+   "univ": "京大",
+   "year": 2023,
+   "term": "論述式",
+   "course": "法学既修者",
+   "mondai": "https://lawschool.law.kyoto-u.ac.jp/cms/uploads/2023/01/mondai_5kenpo.pdf",
+   "kaisetsu": "https://lawschool.law.kyoto-u.ac.jp/cms/uploads/2023/01/shushikijyun_5kenpo.pdf",
+   "kaitou": null,
+   "kaisetsuLabel": "出題趣旨・採点基準",
+   "embed": {
+    "mondai": true,
+    "kaisetsu": true,
+    "kaitou": false
+   },
+   "embedWhy": {
+    "mondai": null,
+    "kaisetsu": null,
+    "kaitou": null
+   },
+   "basis": "解説",
+   "units": [
+    "精神的自由/集会・結社の自由",
+    "精神的自由/表現の自由",
+    "統治/裁判所・司法権",
+    "統治/国会"
+   ],
+   "topics": [
+    "道路上での集会・表現の自由",
+    "道路は伝統的パブリック・フォーラムか",
+    "交通の安全による規制の判断基準",
+    "衆議院の議員懲戒処分に対する司法審査",
+    "司法権の概念（76条1項）と部分社会論",
+    "議院の自律権と地方議会との対比"
+   ],
+   "articles": [
+    21,
+    76
+   ],
+   "hanrei": [],
+   "classified": true
+  },
+  {
    "id": "dos-2023-zenki",
    "univ": "同志社",
    "year": 2023,
@@ -1418,6 +1633,45 @@
    "classified": true
   },
   {
+   "id": "kyo-2022-ronjutsu",
+   "univ": "京大",
+   "year": 2022,
+   "term": "論述式",
+   "course": "法学既修者",
+   "mondai": "https://lawschool.law.kyoto-u.ac.jp/cms/uploads/2022/01/mondai_4kenpo.pdf",
+   "kaisetsu": "https://lawschool.law.kyoto-u.ac.jp/cms/uploads/2022/01/shushikijun_4kenpo.pdf",
+   "kaitou": null,
+   "kaisetsuLabel": "出題趣旨・採点基準",
+   "embed": {
+    "mondai": true,
+    "kaisetsu": true,
+    "kaitou": false
+   },
+   "embedWhy": {
+    "mondai": null,
+    "kaisetsu": null,
+    "kaitou": null
+   },
+   "basis": "解説",
+   "units": [
+    "精神的自由/表現の自由",
+    "統治/違憲審査制"
+   ],
+   "topics": [
+    "フェイクニュース規制と表現の自由",
+    "内容規制のうちの観点規制（事後規制）",
+    "情報発信者とSNS事業者それぞれの検討",
+    "法律により抽象的違憲審査権を最高裁に付与することの合憲性",
+    "憲法81条から導かれる違憲審査制の性格と権力分立"
+   ],
+   "articles": [
+    21,
+    81
+   ],
+   "hanrei": [],
+   "classified": true
+  },
+  {
    "id": "dos-2022-zenki",
    "univ": "同志社",
    "year": 2022,
@@ -1508,180 +1762,6 @@
     "最大判平成17年9月14日",
     "高判令和元年12月11日",
     "最判昭和56年7月21日"
-   ],
-   "classified": true
-  },
-  {
-   "id": "kgu-2022-a",
-   "univ": "関学",
-   "year": 2022,
-   "term": "A日程",
-   "course": "一般入試（法学既修者）",
-   "mondai": "https://www.kwansei.ac.jp/lawschool/assets/Constitutional_Issues_2022A.pdf",
-   "kaisetsu": null,
-   "kaitou": null,
-   "kaisetsuLabel": "解説",
-   "combined": true,
-   "mondaiNote": "問題と解説（解答例・出題の意図・講評）が1つにまとまったもの",
-   "embed": {
-    "mondai": false,
-    "kaisetsu": false,
-    "kaitou": false
-   },
-   "embedWhy": {
-    "mondai": "xfo",
-    "kaisetsu": null,
-    "kaitou": null
-   },
-   "basis": "解説",
-   "units": [
-    "精神的自由/表現の自由",
-    "人権総論/公共の福祉・審査基準"
-   ],
-   "topics": [
-    "ヘイトスピーチ処罰規定の合憲性",
-    "表現内容規制と厳格審査",
-    "定義の明確性と漠然性の法理",
-    "過度の広汎性",
-    "大阪市ヘイトスピーチ条例事件"
-   ],
-   "articles": [
-    21
-   ],
-   "hanrei": [
-    "最大決平成10年12月1日",
-    "最大判平成24年12月7日"
-   ],
-   "classified": true
-  },
-  {
-   "id": "kgu-2022-b",
-   "univ": "関学",
-   "year": 2022,
-   "term": "B日程",
-   "course": "一般入試（法学既修者）",
-   "mondai": "https://www.kwansei.ac.jp/lawschool/assets/Constitutional_Issues_2022B.pdf",
-   "kaisetsu": null,
-   "kaitou": null,
-   "kaisetsuLabel": "解説",
-   "combined": true,
-   "mondaiNote": "問題と解説（解答例・出題の意図・講評）が1つにまとまったもの",
-   "embed": {
-    "mondai": false,
-    "kaisetsu": false,
-    "kaitou": false
-   },
-   "embedWhy": {
-    "mondai": "xfo",
-    "kaisetsu": null,
-    "kaitou": null
-   },
-   "basis": "解説",
-   "units": [
-    "統治/国会",
-    "精神的自由/思想・良心の自由"
-   ],
-   "topics": [
-    "命令的委任の禁止／客観訴訟（選択）",
-    "強制加入団体の目的の範囲の審査",
-    "構成員の協力義務の限界の審査",
-    "二段階審査と一段階審査",
-    "弁護士会の特別会費徴収決議と思想・良心の自由"
-   ],
-   "articles": [
-    19,
-    43
-   ],
-   "hanrei": [
-    "最大判昭和45年6月24日",
-    "最判昭和50年11月28日",
-    "最判平成8年3月19日",
-    "最判平成10年3月13日",
-    "最判平成14年4月25日"
-   ],
-   "classified": true
-  },
-  {
-   "id": "kgu-2022-c",
-   "univ": "関学",
-   "year": 2022,
-   "term": "C日程",
-   "course": "一般入試（法学既修者）",
-   "mondai": "https://www.kwansei.ac.jp/lawschool/assets/Constitutional_Issues_2022C.pdf",
-   "kaisetsu": null,
-   "kaitou": null,
-   "kaisetsuLabel": "解説",
-   "combined": true,
-   "mondaiNote": "問題と解説（解答例・出題の意図・講評）が1つにまとまったもの",
-   "embed": {
-    "mondai": false,
-    "kaisetsu": false,
-    "kaitou": false
-   },
-   "embedWhy": {
-    "mondai": "xfo",
-    "kaisetsu": null,
-    "kaitou": null
-   },
-   "basis": "解説",
-   "units": [
-    "統治/裁判所・司法権",
-    "社会権・参政権/参政権・選挙制度"
-   ],
-   "topics": [
-    "「法律上の争訟」（裁判所法3条）の意義",
-    "選挙犯罪による選挙権・被選挙権の停止",
-    "選挙権の制約に対する審査（15条）",
-    "在外日本人選挙権制限違憲判決の枠組み"
-   ],
-   "articles": [
-    15
-   ],
-   "hanrei": [
-    "最判昭和56年4月7日"
-   ],
-   "classified": true
-  },
-  {
-   "id": "kgu-2022-d",
-   "univ": "関学",
-   "year": 2022,
-   "term": "D日程",
-   "course": "一般入試（法学既修者）",
-   "mondai": "https://www.kwansei.ac.jp/lawschool/assets/Constitution%20Q%26A%202022D.pdf",
-   "kaisetsu": null,
-   "kaitou": null,
-   "kaisetsuLabel": "解説",
-   "combined": true,
-   "mondaiNote": "問題と解説（解答例・出題の意図・講評）が1つにまとまったもの",
-   "embed": {
-    "mondai": false,
-    "kaisetsu": false,
-    "kaitou": false
-   },
-   "embedWhy": {
-    "mondai": "xfo",
-    "kaisetsu": null,
-    "kaitou": null
-   },
-   "basis": "解説",
-   "units": [
-    "統治/内閣・行政",
-    "精神的自由/表現の自由"
-   ],
-   "topics": [
-    "衆議院の解散／憲法改正の限界（選択）",
-    "地方公務員の政治的行為の制限と表現の自由（21条）",
-    "猿払事件・堀越事件",
-    "条例による政治的行為の追加の可否",
-    "合憲限定解釈"
-   ],
-   "articles": [
-    15,
-    21
-   ],
-   "hanrei": [
-    "最判平成24年12月7日"
    ],
    "classified": true
   },
@@ -2907,7 +2987,7 @@
    "year": 2016,
    "term": "転入学",
    "course": "法学既修者2年次に転入学の場合（Cコース）",
-   "mondai": "https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/questions/\r\n2016tennyu_kenpou_bc.pdf",
+   "mondai": "https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/questions/2016tennyu_kenpou_bc.pdf",
    "kaisetsu": "https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/kaisetsu/2016tennyu_kenpouk_bc.pdf",
    "kaitou": null,
    "kaisetsuLabel": "解説",
@@ -2946,7 +3026,7 @@
    "year": 2015,
    "term": "転入学",
    "course": "法学未修者2年次に転入学の場合（Aコース）",
-   "mondai": "https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/questions/\r\n2015tennyu_kenpou_a.pdf",
+   "mondai": "https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/questions/2015tennyu_kenpou_a.pdf",
    "kaisetsu": null,
    "kaitou": null,
    "kaisetsuLabel": "解説",
@@ -2973,7 +3053,7 @@
    "year": 2015,
    "term": "転入学",
    "course": "法学既修者2年次に転入学の場合（Cコース）",
-   "mondai": "https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/questions/\r\n2015tennyu_kenpou_c.pdf",
+   "mondai": "https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/questions/2015tennyu_kenpou_c.pdf",
    "kaisetsu": "https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/kaisetsu/2015tennyu_kenpouk_c.pdf",
    "kaitou": null,
    "kaisetsuLabel": "解説",

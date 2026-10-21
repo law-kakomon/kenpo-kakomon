@@ -1,6 +1,7 @@
 {
  "subject": "憲法",
  "fetched": {
+  "京大": "https://lawschool.law.kyoto-u.ac.jp/nyushi/mondai/",
   "同志社": "https://law-school.doshisha.ac.jp/entrance_ex/question/",
   "立命館": "https://www.ritsumei.ac.jp/lawschool/admission/past.html/",
   "慶應": "https://www.ls.keio.ac.jp/nyushi/examination.html",
@@ -13,6 +14,10 @@
    "reason": "http"
   },
   "law-school.doshisha.ac.jp": {
+   "embeddable": true,
+   "reason": null
+  },
+  "lawschool.law.kyoto-u.ac.jp": {
    "embeddable": true,
    "reason": null
   },
@@ -34,6 +39,61 @@
   }
  },
  "items": [
+  {
+   "id": "kyo-2026-ronjutsu",
+   "univ": "京大",
+   "year": 2026,
+   "term": "論述式",
+   "course": "法学既修者",
+   "mondai": "https://lawschool.law.kyoto-u.ac.jp/cms/uploads/2026/03/mondai_8kenpo.pdf",
+   "kaisetsu": "https://lawschool.law.kyoto-u.ac.jp/cms/uploads/2026/03/shushikijyun_8kenpo.pdf",
+   "kaitou": null,
+   "kaisetsuLabel": "出題趣旨・採点基準"
+  },
+  {
+   "id": "kyo-2025-ronjutsu",
+   "univ": "京大",
+   "year": 2025,
+   "term": "論述式",
+   "course": "法学既修者",
+   "mondai": "https://lawschool.law.kyoto-u.ac.jp/cms/uploads/2025/01/mondai_7kenpo.pdf",
+   "kaisetsu": "https://lawschool.law.kyoto-u.ac.jp/cms/uploads/2025/01/shushikijyun_kenpo.pdf",
+   "kaitou": null,
+   "kaisetsuLabel": "出題趣旨・採点基準"
+  },
+  {
+   "id": "kyo-2024-ronjutsu",
+   "univ": "京大",
+   "year": 2024,
+   "term": "論述式",
+   "course": "法学既修者",
+   "mondai": "https://lawschool.law.kyoto-u.ac.jp/cms/uploads/2024/01/mondai_6kenpo.pdf",
+   "kaisetsu": "https://lawschool.law.kyoto-u.ac.jp/cms/uploads/2024/01/shushikijyun_6kenpo.pdf",
+   "kaitou": null,
+   "kaisetsuLabel": "出題趣旨・採点基準"
+  },
+  {
+   "id": "kyo-2023-ronjutsu",
+   "univ": "京大",
+   "year": 2023,
+   "term": "論述式",
+   "course": "法学既修者",
+   "mondai": "https://lawschool.law.kyoto-u.ac.jp/cms/uploads/2023/01/mondai_5kenpo.pdf",
+   "kaisetsu": "https://lawschool.law.kyoto-u.ac.jp/cms/uploads/2023/01/shushikijyun_5kenpo.pdf",
+   "kaitou": null,
+   "kaisetsuLabel": "出題趣旨・採点基準"
+  },
+  {
+   "id": "kyo-2022-ronjutsu",
+   "univ": "京大",
+   "year": 2022,
+   "term": "論述式",
+   "course": "法学既修者",
+   "mondai": "https://lawschool.law.kyoto-u.ac.jp/cms/uploads/2022/01/mondai_4kenpo.pdf",
+   "kaisetsu": "https://lawschool.law.kyoto-u.ac.jp/cms/uploads/2022/01/shushikijun_4kenpo.pdf",
+   "kaitou": null,
+   "kaisetsuLabel": "出題趣旨・採点基準"
+  },
   {
    "id": "dos-2027-zenki",
    "univ": "同志社",
@@ -293,7 +353,7 @@
    "year": 2016,
    "term": "転入学",
    "course": "法学既修者2年次に転入学の場合（Cコース）",
-   "mondai": "https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/questions/\r\n2016tennyu_kenpou_bc.pdf",
+   "mondai": "https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/questions/2016tennyu_kenpou_bc.pdf",
    "kaisetsu": "https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/kaisetsu/2016tennyu_kenpouk_bc.pdf",
    "kaitou": null,
    "kaisetsuLabel": "解説"
@@ -304,7 +364,7 @@
    "year": 2015,
    "term": "転入学",
    "course": "法学未修者2年次に転入学の場合（Aコース）",
-   "mondai": "https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/questions/\r\n2015tennyu_kenpou_a.pdf",
+   "mondai": "https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/questions/2015tennyu_kenpou_a.pdf",
    "kaisetsu": null,
    "kaitou": null,
    "kaisetsuLabel": "解説"
@@ -315,7 +375,7 @@
    "year": 2015,
    "term": "転入学",
    "course": "法学既修者2年次に転入学の場合（Cコース）",
-   "mondai": "https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/questions/\r\n2015tennyu_kenpou_c.pdf",
+   "mondai": "https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/questions/2015tennyu_kenpou_c.pdf",
    "kaisetsu": "https://law-school.doshisha.ac.jp/wp-content/themes/du_theme/archive/02_entrance_ex/pdf/kaisetsu/2015tennyu_kenpouk_c.pdf",
    "kaitou": null,
    "kaisetsuLabel": "解説"
@@ -526,6 +586,19 @@
    "mondaiNote": "行政法と合わせた「公法」1冊。憲法の問題を参照"
   },
   {
+   "id": "kgu-2027-a",
+   "univ": "関学",
+   "year": 2027,
+   "term": "A日程",
+   "course": "一般入試（法学既修者）",
+   "mondai": "https://www.kwansei.ac.jp/lawschool/assets/2027A_kenpo.pdf",
+   "kaisetsu": null,
+   "kaitou": null,
+   "kaisetsuLabel": "解説",
+   "combined": true,
+   "mondaiNote": "問題と解説（解答例・出題の意図・講評）が1つにまとまったもの"
+  },
+  {
    "id": "kgu-2026-a",
    "univ": "関学",
    "year": 2026,
@@ -675,58 +748,6 @@
    "term": "C日程",
    "course": "一般入試（法学既修者）",
    "mondai": "https://www.kwansei.ac.jp/lawschool/assets/Constitutional_Issues_2023C.pdf",
-   "kaisetsu": null,
-   "kaitou": null,
-   "kaisetsuLabel": "解説",
-   "combined": true,
-   "mondaiNote": "問題と解説（解答例・出題の意図・講評）が1つにまとまったもの"
-  },
-  {
-   "id": "kgu-2022-a",
-   "univ": "関学",
-   "year": 2022,
-   "term": "A日程",
-   "course": "一般入試（法学既修者）",
-   "mondai": "https://www.kwansei.ac.jp/lawschool/assets/Constitutional_Issues_2022A.pdf",
-   "kaisetsu": null,
-   "kaitou": null,
-   "kaisetsuLabel": "解説",
-   "combined": true,
-   "mondaiNote": "問題と解説（解答例・出題の意図・講評）が1つにまとまったもの"
-  },
-  {
-   "id": "kgu-2022-b",
-   "univ": "関学",
-   "year": 2022,
-   "term": "B日程",
-   "course": "一般入試（法学既修者）",
-   "mondai": "https://www.kwansei.ac.jp/lawschool/assets/Constitutional_Issues_2022B.pdf",
-   "kaisetsu": null,
-   "kaitou": null,
-   "kaisetsuLabel": "解説",
-   "combined": true,
-   "mondaiNote": "問題と解説（解答例・出題の意図・講評）が1つにまとまったもの"
-  },
-  {
-   "id": "kgu-2022-c",
-   "univ": "関学",
-   "year": 2022,
-   "term": "C日程",
-   "course": "一般入試（法学既修者）",
-   "mondai": "https://www.kwansei.ac.jp/lawschool/assets/Constitutional_Issues_2022C.pdf",
-   "kaisetsu": null,
-   "kaitou": null,
-   "kaisetsuLabel": "解説",
-   "combined": true,
-   "mondaiNote": "問題と解説（解答例・出題の意図・講評）が1つにまとまったもの"
-  },
-  {
-   "id": "kgu-2022-d",
-   "univ": "関学",
-   "year": 2022,
-   "term": "D日程",
-   "course": "一般入試（法学既修者）",
-   "mondai": "https://www.kwansei.ac.jp/lawschool/assets/Constitution%20Q%26A%202022D.pdf",
    "kaisetsu": null,
    "kaitou": null,
    "kaisetsuLabel": "解説",
